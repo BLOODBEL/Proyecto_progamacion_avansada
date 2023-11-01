@@ -31,7 +31,7 @@ namespace Tarea_1.Controllers
         [HttpPost]
         public ActionResult Registrarse(UsuarioEnt entidad)
         {
-            string respuesta = claseUsuario.Registrarse(entidad);
+            string respuesta = claseUsuario.RegistrarCuenta(entidad);
 
             if (respuesta == "OK")
             {

@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="IdClase" />
+          </Key>
+          <Property Name="IdClase" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="ClaseEntrenador">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdClase" Type="int" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="255" />
+          <Property Name="CodPostal" Type="varchar" MaxLength="10" />
+          <Property Name="OtraSeña" Type="text" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Estadisticas">
+          <Key>
+            <PropertyRef Name="IdEstadisticas" />
+          </Key>
+          <Property Name="IdEstadisticas" Type="int" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Peso" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IdSuscripcion" Type="int" />
+        </EntityType>
+        <EntityType Name="InscritoEn">
+          <Key>
+            <PropertyRef Name="IdClase" />
+          </Key>
+          <Property Name="IdClase" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Suscripcion">
+          <Key>
+            <PropertyRef Name="IdSuscripcion" />
+          </Key>
+          <Property Name="IdSuscripcion" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="FechaFin" Type="date" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Apellidos1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Apellidos2" Type="nvarchar" MaxLength="50" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contraseña" Type="nvarchar" MaxLength="128" />
+          <Property Name="Teléfono" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdRol" Type="int" />
+          <Property Name="Identificación" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Clase_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Clase">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaseEntrenador_Clase">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="IdClase" />
+            </Principal>
+            <Dependent Role="ClaseEntrenador">
+              <PropertyRef Name="IdClase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaseEntrenador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ClaseEntrenador">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estadisticas_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Estadisticas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Suscripcion">
+          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suscripcion">
+              <PropertyRef Name="IdSuscripcion" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdSuscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InscritoEn_Clase">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
+          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="IdClase" />
+            </Principal>
+            <Dependent Role="InscritoEn">
+              <PropertyRef Name="IdClase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InscritoEn_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="InscritoEn">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Suscripcion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Suscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="InsertUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos2" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="Identificación" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProyectoPAModelStoreContainer">
+          <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaseEntrenador" EntityType="Self.ClaseEntrenador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estadisticas" EntityType="Self.Estadisticas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InscritoEn" EntityType="Self.InscritoEn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Clase_Usuario" Association="Self.FK_Clase_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Clase" EntitySet="Clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaseEntrenador_Clase" Association="Self.FK_ClaseEntrenador_Clase">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaseEntrenador_Usuario" Association="Self.FK_ClaseEntrenador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Usuario" Association="Self.FK_Direccion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estadisticas_Usuario" Association="Self.FK_Estadisticas_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Estadisticas" EntitySet="Estadisticas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Suscripcion" Association="Self.FK_Factura_Suscripcion">
+            <End Role="Suscripcion" EntitySet="Suscripcion" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InscritoEn_Clase" Association="Self.FK_InscritoEn_Clase">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="InscritoEn" EntitySet="InscritoEn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InscritoEn_Usuario" Association="Self.FK_InscritoEn_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="InscritoEn" EntitySet="InscritoEn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Suscripcion_Usuario" Association="Self.FK_Suscripcion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Suscripcion" EntitySet="Suscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Roles" Association="Self.FK_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="IdClase" />
+          </Key>
+          <Property Name="IdClase" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Clase_Usuario" FromRole="Clase" ToRole="Usuario" />
+          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK_ClaseEntrenador_Clase" FromRole="Clase" ToRole="ClaseEntrenador" />
+          <NavigationProperty Name="InscritoEn" Relationship="Self.FK_InscritoEn_Clase" FromRole="Clase" ToRole="InscritoEn" />
+        </EntityType>
+        <EntityType Name="ClaseEntrenador">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdClase" Type="Int32" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK_ClaseEntrenador_Clase" FromRole="ClaseEntrenador" ToRole="Clase" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_ClaseEntrenador_Usuario" FromRole="ClaseEntrenador" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CodPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OtraSeña" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Direccion_Usuario" FromRole="Direccion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Estadisticas">
+          <Key>
+            <PropertyRef Name="IdEstadisticas" />
+          </Key>
+          <Property Name="IdEstadisticas" Type="Int32" Nullable="false" />
+          <Property Name="Altura" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Peso" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Estadisticas_Usuario" FromRole="Estadisticas" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IdSuscripcion" Type="Int32" />
+          <NavigationProperty Name="Suscripcion" Relationship="Self.FK_Factura_Suscripcion" FromRole="Factura" ToRole="Suscripcion" />
+        </EntityType>
+        <EntityType Name="InscritoEn">
+          <Key>
+            <PropertyRef Name="IdClase" />
+          </Key>
+          <Property Name="IdClase" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK_InscritoEn_Clase" FromRole="InscritoEn" ToRole="Clase" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_InscritoEn_Usuario" FromRole="InscritoEn" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Roles" FromRole="Roles" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Suscripcion">
+          <Key>
+            <PropertyRef Name="IdSuscripcion" />
+          </Key>
+          <Property Name="IdSuscripcion" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Precision="0" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Suscripcion" FromRole="Suscripcion" ToRole="Factura" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Suscripcion_Usuario" FromRole="Suscripcion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contraseña" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Teléfono" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdRol" Type="Int32" />
+          <Property Name="Identificación" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK_Clase_Usuario" FromRole="Usuario" ToRole="Clase" />
+          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK_ClaseEntrenador_Usuario" FromRole="Usuario" ToRole="ClaseEntrenador" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Usuario" FromRole="Usuario" ToRole="Direccion" />
+          <NavigationProperty Name="Estadisticas" Relationship="Self.FK_Estadisticas_Usuario" FromRole="Usuario" ToRole="Estadisticas" />
+          <NavigationProperty Name="InscritoEn" Relationship="Self.FK_InscritoEn_Usuario" FromRole="Usuario" ToRole="InscritoEn" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Usuario_Roles" FromRole="Usuario" ToRole="Roles" />
+          <NavigationProperty Name="Suscripcion" Relationship="Self.FK_Suscripcion_Usuario" FromRole="Usuario" ToRole="Suscripcion" />
+        </EntityType>
+        <Association Name="FK_Clase_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Clase">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaseEntrenador_Clase">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="IdClase" />
+            </Principal>
+            <Dependent Role="ClaseEntrenador">
+              <PropertyRef Name="IdClase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InscritoEn_Clase">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
+          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="IdClase" />
+            </Principal>
+            <Dependent Role="InscritoEn">
+              <PropertyRef Name="IdClase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClaseEntrenador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ClaseEntrenador">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estadisticas_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Estadisticas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Suscripcion">
+          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="0..1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suscripcion">
+              <PropertyRef Name="IdSuscripcion" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdSuscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InscritoEn_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="InscritoEn">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Suscripcion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Suscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoPAEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clase" EntityType="Self.Clase" />
+          <EntitySet Name="ClaseEntrenador" EntityType="Self.ClaseEntrenador" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="Estadisticas" EntityType="Self.Estadisticas" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="InscritoEn" EntityType="Self.InscritoEn" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Clase_Usuario" Association="Self.FK_Clase_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Clase" EntitySet="Clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaseEntrenador_Clase" Association="Self.FK_ClaseEntrenador_Clase">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InscritoEn_Clase" Association="Self.FK_InscritoEn_Clase">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="InscritoEn" EntitySet="InscritoEn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaseEntrenador_Usuario" Association="Self.FK_ClaseEntrenador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Usuario" Association="Self.FK_Direccion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estadisticas_Usuario" Association="Self.FK_Estadisticas_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Estadisticas" EntitySet="Estadisticas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Suscripcion" Association="Self.FK_Factura_Suscripcion">
+            <End Role="Suscripcion" EntitySet="Suscripcion" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InscritoEn_Usuario" Association="Self.FK_InscritoEn_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="InscritoEn" EntitySet="InscritoEn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Roles" Association="Self.FK_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Suscripcion_Usuario" Association="Self.FK_Suscripcion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Suscripcion" EntitySet="Suscripcion" />
+          </AssociationSet>
+          <FunctionImport Name="InsertUsuario">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos1" Mode="In" Type="String" />
+            <Parameter Name="Apellidos2" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="Identificación" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoPAModelStoreContainer" CdmEntityContainer="ProyectoPAEntities2">
+          <EntitySetMapping Name="Clase">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Clase">
+              <MappingFragment StoreEntitySet="Clase">
+                <ScalarProperty Name="IdClase" ColumnName="IdClase" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaseEntrenador">
+            <EntityTypeMapping TypeName="ProyectoPAModel.ClaseEntrenador">
+              <MappingFragment StoreEntitySet="ClaseEntrenador">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdClase" ColumnName="IdClase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
+                <ScalarProperty Name="OtraSeña" ColumnName="OtraSeña" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadisticas">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Estadisticas">
+              <MappingFragment StoreEntitySet="Estadisticas">
+                <ScalarProperty Name="IdEstadisticas" ColumnName="IdEstadisticas" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IdSuscripcion" ColumnName="IdSuscripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InscritoEn">
+            <EntityTypeMapping TypeName="ProyectoPAModel.InscritoEn">
+              <MappingFragment StoreEntitySet="InscritoEn">
+                <ScalarProperty Name="IdClase" ColumnName="IdClase" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suscripcion">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Suscripcion">
+              <MappingFragment StoreEntitySet="Suscripcion">
+                <ScalarProperty Name="IdSuscripcion" ColumnName="IdSuscripcion" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ProyectoPAModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos1" ColumnName="Apellidos1" />
+                <ScalarProperty Name="Apellidos2" ColumnName="Apellidos2" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Identificación" ColumnName="Identificación" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertUsuario" FunctionName="ProyectoPAModel.Store.InsertUsuario" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
