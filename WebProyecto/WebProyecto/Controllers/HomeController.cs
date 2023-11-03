@@ -49,7 +49,10 @@ namespace Tarea_1.Controllers
             return View();
         }
 
-
+        public ActionResult PerfilUsuario()
+        {
+            return View();
+        }
 
     }
 }

@@ -1,19 +1,22 @@
-﻿@{
-    ViewBag.Title = "contraseña";
-    Layout = "~/Views/Shared/_layout_Login.cshtml";
+﻿@model WebProyecto.Entities.UsuarioEnt
+
+@{
+    ViewBag.Title = "Perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -100px;">
     <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg');">
-
         <div class="container">
             <div class="row slider-text align-items-center justify-content-center">
                 <div class="col-md-8 text-center col-sm-12 element-animate">
-                    <h1>Recupera tu contraseña </h1>
+                    <h1>Información Personal</h1>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <section class="section d-flex align-items-center justify-content-center">
 </section>
@@ -23,15 +26,8 @@
         <div class="col-md-12 text-center heading-wrap">
             <div class="container">
                 <div class="form-wrap overlap primary element-animate">
-                    <h2 class="h2">Ingresa los datos solicitados</h2>
                     <form action="#">
-                        <div class="form-group">
-                            <input type="number" class="form-control" placeholder="Cedula">
-                        </div>
 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-warning btn-block py-3" value="Aceptar">
-                        </div>
                     </form>
                 </div>
             </div>
