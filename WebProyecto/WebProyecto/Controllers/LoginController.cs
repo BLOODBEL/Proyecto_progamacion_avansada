@@ -6,21 +6,47 @@ using System.Web.Mvc;
 using WebProyecto.Entities;
 using WebProyecto.Models;
 
-namespace Tarea_1.Controllers
+namespace WebProyecto.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
         UsuarioModel claseUsuario = new UsuarioModel();
 
+
+
+        [HttpGet]
         public ActionResult IniciarSesion()
         {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult IniciarSesion(UsuarioEnt entidad)
+        {
+            var respuesta = claseUsuario.IniciarSesion(entidad);
+
+            if (respuesta != null)
+            {
+                Session["IdUsuario"] = respuesta.IdUsuario;
+                Session["NombreUsuario"] = respuesta.Nombre;
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido validar su información";
+                return View();
+            }
+        }
+
+
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
+
+
 
         [HttpGet]
         public ActionResult Registrarse()
@@ -35,7 +61,7 @@ namespace Tarea_1.Controllers
 
             if (respuesta == "OK")
             {
-                return RedirectToAction("IniciarSesion", "Home");
+                return RedirectToAction("IniciarSesion", "Login");
             }
             else
             {

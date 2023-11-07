@@ -14,38 +14,17 @@ namespace APIProyecto
     
     public partial class Usuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
-        {
-            this.Clase = new HashSet<Clase>();
-            this.Direccion = new HashSet<Direccion>();
-            this.Estadisticas = new HashSet<Estadisticas>();
-            this.InscritoEn = new HashSet<InscritoEn>();
-            this.Suscripcion = new HashSet<Suscripcion>();
-        }
-    
-        public int IdUsuario { get; set; }
+        public long IdUsuario { get; set; }
+        public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public string Apellidos1 { get; set; }
         public string Apellidos2 { get; set; }
         public string CorreoElectronico { get; set; }
-        public string Contraseña { get; set; }
-        public string Teléfono { get; set; }
-        public Nullable<int> IdRol { get; set; }
-        public string Identificación { get; set; }
+        public string Contrasenna { get; set; }
+        public string Telefono { get; set; }
         public bool Estado { get; set; }
+        public long IdRol { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clase> Clase { get; set; }
-        public virtual ClaseEntrenador ClaseEntrenador { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Direccion> Direccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Estadisticas> Estadisticas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InscritoEn> InscritoEn { get; set; }
-        public virtual Roles Roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Suscripcion> Suscripcion { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

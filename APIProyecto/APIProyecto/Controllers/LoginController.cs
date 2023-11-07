@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.IO;
 using System.Web.Http;
 
 namespace APIProyecto.Controllers
 {
-    public class LoginController
+    public class LoginController : ApiController
     {
 
         [HttpPost]
@@ -16,24 +16,10 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities2())
+                using (var context = new ProyectoPAEntities())
                 {
-                    Usuario user = new Usuario();
-                    user.Identificación = entidad.Identificación;
-                    user.Nombre = entidad.Nombre;
-                    user.Apellidos1 = entidad.Apellidos1;
-                    user.Apellidos2 = entidad.Apellidos2;
-                    user.CorreoElectronico = entidad.CorreoElectronico;
-                    user.Contraseña = entidad.Contraseña;
-                    user.Teléfono = entidad.Teléfono;
-                    user.IdRol = (int?)entidad.IdRol;
-                    user.Estado = entidad.Estado;
-                  
 
-                    context.Usuario.Add(user);
-                    context.SaveChanges();
-
-                    //context.InsertUsuario(entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Contraseña, entidad.Teléfono, entidad.IdRol, entidad.Identificación);
+                    context.RegistrarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Telefono);
                     return "OK";
                 }
             }
@@ -41,7 +27,28 @@ namespace APIProyecto.Controllers
             {
                 return string.Empty;
             }
+        }
+
+        [HttpPost]
+        [Route("IniciarSesion")]
+        public IniciarSesion_Result IniciarSesion(UsuarioEnt entidad)
+        {
+            try
             {
+                using (var context = new ProyectoPAEntities())
+                {
+                    //return (from x in context.TUsuario 
+                    //             where x.Correo == entidad.Correo
+                    //             && x.Contrasenna == entidad.Contrasenna
+                    //             && x.Estado == true
+                    //             select x).FirstOrDefault();
+
+                    return context.IniciarSesion(entidad.CorreoElectronico, entidad.Contrasenna).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

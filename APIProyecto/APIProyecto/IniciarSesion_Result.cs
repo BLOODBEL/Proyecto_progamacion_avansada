@@ -10,16 +10,17 @@
 namespace APIProyecto
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Factura
+    public partial class IniciarSesion_Result
     {
-        public int IdFactura { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<decimal> Total { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public Nullable<int> IdSuscripcion { get; set; }
-    
-        public virtual Suscripcion Suscripcion { get; set; }
+        public long IdUsuario { get; set; }
+        public string Identificacion { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos1 { get; set; }
+        public string Apellidos2 { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Contrasenna { get; set; }
+        public bool Estado { get; set; }
+        public string DescripcionRol { get; set; }
     }
 }

@@ -15,10 +15,10 @@ namespace APIProyecto
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ProyectoPAEntities2 : DbContext
+    public partial class ProyectoPAEntities : DbContext
     {
-        public ProyectoPAEntities2()
-            : base("name=ProyectoPAEntities2")
+        public ProyectoPAEntities()
+            : base("name=ProyectoPAEntities")
         {
         }
     
@@ -27,21 +27,14 @@ namespace APIProyecto
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clase> Clase { get; set; }
-        public virtual DbSet<ClaseEntrenador> ClaseEntrenador { get; set; }
-        public virtual DbSet<Direccion> Direccion { get; set; }
-        public virtual DbSet<Estadisticas> Estadisticas { get; set; }
-        public virtual DbSet<Factura> Factura { get; set; }
-        public virtual DbSet<InscritoEn> InscritoEn { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Suscripcion> Suscripcion { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     
-        public virtual int InsertUsuario(Nullable<int> idUsuario, string nombre, string apellidos1, string apellidos2, string correoElectronico, string contraseña, string teléfono, Nullable<int> idRol, string identificación, string estado)
+        public virtual int RegistrarCuenta(string identificacion, string nombre, string apellidos1, string apellidos2, string correoElectronico, string contrasenna, string telefono)
         {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
+            var identificacionParameter = identificacion != null ?
+                new ObjectParameter("Identificacion", identificacion) :
+                new ObjectParameter("Identificacion", typeof(string));
     
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -59,27 +52,28 @@ namespace APIProyecto
                 new ObjectParameter("CorreoElectronico", correoElectronico) :
                 new ObjectParameter("CorreoElectronico", typeof(string));
     
-            var contraseñaParameter = contraseña != null ?
-                new ObjectParameter("Contraseña", contraseña) :
-                new ObjectParameter("Contraseña", typeof(string));
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("Contrasenna", contrasenna) :
+                new ObjectParameter("Contrasenna", typeof(string));
     
-            var teléfonoParameter = teléfono != null ?
-                new ObjectParameter("Teléfono", teléfono) :
-                new ObjectParameter("Teléfono", typeof(string));
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
     
-            var idRolParameter = idRol.HasValue ?
-                new ObjectParameter("IdRol", idRol) :
-                new ObjectParameter("IdRol", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuenta", identificacionParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, contrasennaParameter, telefonoParameter);
+        }
     
-            var identificaciónParameter = identificación != null ?
-                new ObjectParameter("Identificación", identificación) :
-                new ObjectParameter("Identificación", typeof(string));
+        public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
     
-            var estadoParameter = estado != null ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(string));
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("Contrasenna", contrasenna) :
+                new ObjectParameter("Contrasenna", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUsuario", idUsuarioParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, contraseñaParameter, teléfonoParameter, idRolParameter, identificaciónParameter, estadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", correoElectronicoParameter, contrasennaParameter);
         }
     }
 }
