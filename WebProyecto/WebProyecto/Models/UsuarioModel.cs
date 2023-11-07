@@ -18,18 +18,18 @@ namespace WebProyecto.Models
         {
             using (var client = new HttpClient())
             {
-                var urlApi = rutaServidor + "IniciarSesion";
+                var urlApi = "https://localhost:44349/IniciarSesion";
                 var jsonData = JsonContent.Create(entidad);
                 var res = client.PostAsync(urlApi, jsonData).Result;
                 return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
             }
         }
 
-        public string RegistrarCuenta(UsuarioEnt entidad)
+        public string Registrarse(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
             {
-                var urlApi = rutaServidor + "RegistrarCuenta";
+                var urlApi = "https://localhost:44349/Registrarse";
                 var jsonData = JsonContent.Create(entidad);
                 var res = client.PostAsync(urlApi, jsonData).Result;
                 return res.Content.ReadFromJsonAsync<string>().Result;

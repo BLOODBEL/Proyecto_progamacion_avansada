@@ -11,8 +11,8 @@ namespace APIProyecto.Controllers
     {
 
         [HttpPost]
-        [Route("RegistrarCuenta")]
-        public string RegistrarCuenta(UsuarioEnt entidad)
+        [Route("Registrarse")]
+        public string Registrarse(UsuarioEnt entidad)
         {
             try
             {

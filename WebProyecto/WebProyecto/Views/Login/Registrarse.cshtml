@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="form-wrap overlap primary element-animate">
                     <h2 class="h2">Conviértete en miembro</h2>
-                    <form action="#">
+                 
 
                         @if (ViewBag.MensajeUsuario != null)
                         {
@@ -38,7 +38,7 @@
                         @using (Html.BeginForm("Registrarse", "Login", FormMethod.Post, new { @class = "pt-3" }))
                         {
                             <div class="form-group">
-                                @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-lg", @placeholder = "Identificación", @type = "text" })
+                                @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-lg",@placeholder = "Identificación", @type = "text"})
                             </div>
                             <div class="form-group">
                                 @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
@@ -67,7 +67,7 @@
                             </div>
 
                         }
-                    </form>
+                   
                 </div>
             </div>
         </div>

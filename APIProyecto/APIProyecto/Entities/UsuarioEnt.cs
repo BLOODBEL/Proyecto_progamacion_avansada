@@ -17,7 +17,7 @@ namespace APIProyecto.Entities
         public string Contrasenna { get; set; }
         public string Telefono { get; set; }
         public bool Estado { get; set; }
-        public long IdRol  { get; set; }
+        public string DescripcionRol { get; set; }
 
     }
 }

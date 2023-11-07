@@ -57,7 +57,10 @@ namespace WebProyecto.Controllers
         [HttpPost]
         public ActionResult Registrarse(UsuarioEnt entidad)
         {
-            string respuesta = claseUsuario.RegistrarCuenta(entidad);
+
+        entidad.Estado = true;
+
+            string respuesta = claseUsuario.Registrarse(entidad);
 
             if (respuesta == "OK")
             {
