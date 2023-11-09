@@ -75,5 +75,51 @@ namespace APIProyecto
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", correoElectronicoParameter, contrasennaParameter);
         }
+    
+        public virtual int ActualizarCuenta(string identificacion, string nombre, string apellidos1, string apellidos2, string correoElectronico, string contrasenna, string telefono, Nullable<long> idUsuario)
+        {
+            var identificacionParameter = identificacion != null ?
+                new ObjectParameter("Identificacion", identificacion) :
+                new ObjectParameter("Identificacion", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidos1Parameter = apellidos1 != null ?
+                new ObjectParameter("Apellidos1", apellidos1) :
+                new ObjectParameter("Apellidos1", typeof(string));
+    
+            var apellidos2Parameter = apellidos2 != null ?
+                new ObjectParameter("Apellidos2", apellidos2) :
+                new ObjectParameter("Apellidos2", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("Contrasenna", contrasenna) :
+                new ObjectParameter("Contrasenna", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCuenta", identificacionParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, contrasennaParameter, telefonoParameter, idUsuarioParameter);
+        }
+    
+        public virtual int ActualizarEstadoUsuario(Nullable<long> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEstadoUsuario", idUsuarioParameter);
+        }
     }
 }

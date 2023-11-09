@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +305,8 @@
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Login\PerfilUsuario.cshtml" />
     <Content Include="Views\Login\Registrarse.cshtml" />
+    <Content Include="Views\Usuario\ConsultaUsuarios.cshtml" />
+    <Content Include="Views\Shared\_Layout_adm.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

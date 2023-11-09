@@ -72,6 +72,12 @@ namespace WebProyecto.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return RedirectToAction("IniciarSesion", "Login");
+        }
 
         public ActionResult contraseña()
         {
