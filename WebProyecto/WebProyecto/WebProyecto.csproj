@@ -208,6 +208,7 @@
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FuncionesSite\ConsultaNombres.js" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\build.force" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -306,7 +307,10 @@
     <Content Include="Views\Login\PerfilUsuario.cshtml" />
     <Content Include="Views\Login\Registrarse.cshtml" />
     <Content Include="Views\Usuario\ConsultaUsuarios.cshtml" />
-    <Content Include="Views\Shared\_Layout_adm.cshtml" />
+    <Content Include="Views\Usuario\ActualizarUsuario.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

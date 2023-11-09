@@ -15,8 +15,8 @@ namespace WebProyecto.Controllers
         [HttpGet]
         public ActionResult ConsultaUsuarios()
         {
-            long IdUsuario = long.Parse(Session["IdUsuario"].ToString());
-            var datos = claseUsuario.ConsultaUsuarios().Where(x => x.IdUsuario != IdUsuario);
+
+            var datos = claseUsuario.ConsultaUsuarios();
             return View(datos);
         }
 
