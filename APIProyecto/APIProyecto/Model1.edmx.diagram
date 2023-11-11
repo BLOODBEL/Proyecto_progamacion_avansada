@@ -4,10 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6d1a33aa61c24239a97f1b144e9a88ac" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoPAModel.Rol" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoPAModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="efc70bf5d35e46abaf8993d5ea5aa9f9" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoPAModel.Clase" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.ClaseEntrenador" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Direccion" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Estadisticas" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Factura" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.InscritoEn" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Rol" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Suscripcion" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPAModel.Usuario" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Clase__IdUsuario__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__ClaseEntr__IdCla__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__InscritoE__IdCla__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__ClaseEntr__IdUsu__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Direccion__IdUsu__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Estadisti__IdUsu__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Factura__IdSuscr__2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__InscritoE__IdUsu__29221CFB" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoPAModel.FK_Usuario_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPAModel.FK__Suscripci__IdUsu__1EA48E88" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

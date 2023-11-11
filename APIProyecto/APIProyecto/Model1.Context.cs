@@ -27,7 +27,14 @@ namespace APIProyecto
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Clase> Clase { get; set; }
+        public virtual DbSet<ClaseEntrenador> ClaseEntrenador { get; set; }
+        public virtual DbSet<Direccion> Direccion { get; set; }
+        public virtual DbSet<Estadisticas> Estadisticas { get; set; }
+        public virtual DbSet<Factura> Factura { get; set; }
+        public virtual DbSet<InscritoEn> InscritoEn { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Suscripcion> Suscripcion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     
         public virtual int ActualizarCuenta(string identificacion, string nombre, string apellidos1, string apellidos2, string correoElectronico, string telefono, Nullable<long> idUsuario)

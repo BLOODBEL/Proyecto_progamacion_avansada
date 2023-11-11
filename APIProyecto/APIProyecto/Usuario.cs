@@ -14,6 +14,17 @@ namespace APIProyecto
     
     public partial class Usuario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuario()
+        {
+            this.Clase = new HashSet<Clase>();
+            this.ClaseEntrenador = new HashSet<ClaseEntrenador>();
+            this.Direccion = new HashSet<Direccion>();
+            this.Estadisticas = new HashSet<Estadisticas>();
+            this.InscritoEn = new HashSet<InscritoEn>();
+            this.Suscripcion = new HashSet<Suscripcion>();
+        }
+    
         public long IdUsuario { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
@@ -25,6 +36,18 @@ namespace APIProyecto
         public bool Estado { get; set; }
         public long IdRol { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Clase> Clase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClaseEntrenador> ClaseEntrenador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Estadisticas> Estadisticas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InscritoEn> InscritoEn { get; set; }
         public virtual Rol Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Suscripcion> Suscripcion { get; set; }
     }
 }
