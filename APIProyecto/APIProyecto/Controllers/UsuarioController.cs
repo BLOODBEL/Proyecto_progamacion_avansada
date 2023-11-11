@@ -58,7 +58,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Telefono, entidad.IdUsuario);
+                    context.ActualizarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Telefono, entidad.IdUsuario);
                     return "OK";
                 }
             }
