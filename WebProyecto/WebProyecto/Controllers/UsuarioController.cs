@@ -171,5 +171,84 @@ namespace WebProyecto.Controllers
                 return View();
             }
         }
+        /* CLASES */
+
+[HttpGet]
+public ActionResult RegistrarClase()
+{
+    return View();
+}
+
+[HttpPost]
+public ActionResult RegistrarClase(UsuarioEnt entidad)
+{
+    string respuesta = claseUsuario.RegistrarClase(entidad);
+
+    if (respuesta == "OK")
+    {
+        return RedirectToAction("VerClases", "Usuario");
+    }
+    else
+    {
+        ViewBag.MensajeUsuario = "No se ha podido registrar la información";
+        return View();
+    }
+}
+
+[HttpGet]
+public ActionResult VerClase()
+{
+    var datos = claseUsuario.VerClase();
+    return View(datos);
+}
+
+[HttpGet]
+public ActionResult VerClase()
+{
+    long q = long.Parse(Session["IdUsuario"].ToString());
+    var datos = claseUsuario.ConsultaUsuario(q);
+    Session["Nombre"] = datos.Nombre;
+
+    return View(datos);
+}
+
+[HttpPost]
+public ActionResult VerClase(UsuarioEnt entidad)
+{
+    string respuesta = claseUsuario.ActualizarClase(entidad);
+
+    if (respuesta == "OK")
+    {
+        return RedirectToAction("Index", "Login");
+    }
+    else
+    {
+        ViewBag.MensajeUsuario = "No se ha podido actualizar la clase";
+        return View();
+    }
+}
+
+[HttpGet]
+public ActionResult ActualizarClase(long q)
+{
+    var datos = claseUsuario.VerClase(q);
+    return View(datos);
+}
+
+[HttpPost]
+public ActionResult ActualizarClase(UsuarioEnt entidad)
+{
+    string respuesta = claseUsuario.ActualizarCuenta(entidad);
+
+    if (respuesta == "OK")
+    {
+        return RedirectToAction("VerClase", "Usuario");
+    }
+    else
+    {
+        ViewBag.MensajeUsuario = "No se ha podido actualizar la clase";
+        return View();
+    }
+}
     }
 }
