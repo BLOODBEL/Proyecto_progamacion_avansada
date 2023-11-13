@@ -122,7 +122,7 @@ namespace WebProyecto.Models
         }
         /* CLASES */
 
-public string RegistrarClase(UsuarioEnt entidad)
+public string RegistrarClase(ClaseEnt entidad)
 {
     using (var client = new HttpClient())
     {
@@ -152,7 +152,7 @@ public UsuarioEnt VerClase(long q)
     }
 }
 
-public string ActualizarClase(UsuarioEnt entidad)
+public string ActualizarClase(ClaseEnt entidad)
 {
     using (var client = new HttpClient())
     {
