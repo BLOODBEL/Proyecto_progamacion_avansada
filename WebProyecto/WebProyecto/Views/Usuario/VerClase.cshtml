@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebProyecto.Entities.UsuarioEnt>
+
+@{
+    ViewBag.Title = "VerClases";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<section class="home-slider-loop-false inner-page owl-carousel" style="margin-bottom: -50px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg'); background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Clases Registradas</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section element-animate">
+    <div class="col-md-12 text-center heading-wrap">
+        <a href="@Url.Action("RegistrarClase", "Usuario")" class="btn btn-warning btn-block py-3">Registrar Nueva Clase</a>
+    </div>
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id de la Clase</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Actualizar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.IdClase</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Descripcion</td>
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ActualizarClase", "Usuario", new { q = item.IdClase })"><i class="fa fa-user fa-lg"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
