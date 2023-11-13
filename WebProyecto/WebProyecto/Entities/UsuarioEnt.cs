@@ -21,10 +21,7 @@ namespace WebProyecto.Entities
         public decimal Altura { get; set; }
         public decimal Peso { get; set; }
         public DateTime Fecha { get; set; }
-        /* ENT CLASES */
-public long IdClase { get; set; }
-public string Nombre { get; set; }
-public string Descripcion { get; set; }
+        
 
     }
 }
