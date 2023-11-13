@@ -120,6 +120,48 @@ namespace WebProyecto.Models
                 return res.Content.ReadFromJsonAsync<string>().Result;
             }
         }
+        /* CLASES */
+
+public string RegistrarClase(UsuarioEnt entidad)
+{
+    using (var client = new HttpClient())
+    {
+        var urlApi = rutaServidor + "RegistrarClase";
+        var jsonData = JsonContent.Create(entidad);
+        var res = client.PostAsync(urlApi, jsonData).Result;
+        return res.Content.ReadFromJsonAsync<string>().Result;
+    }
+}
+public List<UsuarioEnt> VerClase()
+{
+    using (var client = new HttpClient())
+    {
+        var urlApi = rutaServidor + "VerClase";
+        var res = client.GetAsync(urlApi).Result;
+        return res.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+    }
+}
+
+public UsuarioEnt VerClase(long q)
+{
+    using (var client = new HttpClient())
+    {
+        var urlApi = rutaServidor + "VerClase?q=" + q;
+        var res = client.GetAsync(urlApi).Result;
+        return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+    }
+}
+
+public string ActualizarClase(UsuarioEnt entidad)
+{
+    using (var client = new HttpClient())
+    {
+        var urlApi = rutaServidor + "ActualizarClase";
+        var jsonData = JsonContent.Create(entidad);
+        var res = client.PutAsync(urlApi, jsonData).Result;
+        return res.Content.ReadFromJsonAsync<string>().Result;
+    }
+}
 
     }
 }
