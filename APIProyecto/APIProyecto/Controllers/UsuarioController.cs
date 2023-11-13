@@ -155,5 +155,81 @@ namespace APIProyecto.Controllers
                 return string.Empty;
             }
         }
+        /* CLASES */
+
+[HttpPost]
+[Route("RegistrarClase")]
+public string RegistrarClase(UsuarioEnt entidad)
+{
+    try
+    {
+        using (var context = new ProyectoPAEntities1())
+        {
+            context.RegistrarEstadistica(entidad.Nombre, entidad.Descripcion, entidad.IdUsuario);
+            return "OK";
+        }
+    }
+    catch (Exception)
+    {
+        return string.Empty;
+    }
+}
+
+[HttpGet]
+[Route("VerClases")]
+public List<Clase> VerClases()
+{
+    try
+    {
+        using (var context = new ProyectoPAEntities1())
+        {
+            context.Configuration.LazyLoadingEnabled = false;
+            return (from x in context.Clases
+                    select x).ToList();
+        }
+    }
+    catch (Exception)
+    {
+        return new List<Clase>();
+    }
+}
+
+[HttpGet]
+[Route("VerClases")]
+public Clase VerClase(long q)
+{
+    try
+    {
+        using (var context = new ProyectoPAEntities1())
+        {
+            context.Configuration.LazyLoadingEnabled = false;
+            return (from x in context.Clases
+                    where x.IdUsuario == q
+                    select x).FirstOrDefault();
+        }
+    }
+    catch (Exception)
+    {
+        return null;
+    }
+}
+
+[HttpPut]
+[Route("ActualizarClase")]
+public string ActualizarClase(UsuarioEnt entidad)
+{
+    try
+    {
+        using (var context = new ProyectoPAEntities1())
+        {
+            context.ActualizarEstadistica(entidad.Nombre, entidad.Descripcion, entidad.IdUsuario, entidad.IdClase);
+            return "OK";
+        }
+    }
+    catch (Exception)
+    {
+        return string.Empty;
+    }
+}
     }
 }
