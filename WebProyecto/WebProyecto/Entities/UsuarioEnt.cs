@@ -14,6 +14,7 @@ namespace WebProyecto.Entities
         public string Telefono { get; set; }
         public bool Estado { get; set; }
         public string DescripcionRol { get; set; }
+      
 
         /* ENT ESTADISTICAS */
 
