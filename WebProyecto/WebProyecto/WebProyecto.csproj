@@ -304,10 +304,13 @@
     <Content Include="Views\Login\contraseña.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
-    <Content Include="Views\Login\PerfilUsuario.cshtml" />
     <Content Include="Views\Login\Registrarse.cshtml" />
     <Content Include="Views\Usuario\ConsultaUsuarios.cshtml" />
     <Content Include="Views\Usuario\ActualizarUsuario.cshtml" />
+    <Content Include="Views\Usuario\PerfilUsuario.cshtml" />
+    <Content Include="Views\Usuario\VerEstadisticas.cshtml" />
+    <Content Include="Views\Usuario\RegistrarEstadistica.cshtml" />
+    <Content Include="Views\Usuario\VerEstadistica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

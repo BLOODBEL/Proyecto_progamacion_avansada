@@ -78,5 +78,48 @@ namespace WebProyecto.Models
             }
         }
 
+        /* ESTADISTICAS */
+
+        public string RegistrarEstadistica(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "RegistrarEstadistica";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+        public List<UsuarioEnt> VerEstadisticas()
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "VerEstadisticas";
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+            }
+        }
+
+        public UsuarioEnt VerEstadistica(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "VerEstadistica?q=" + q;
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+            }
+        }
+
+        public string ActualizarEstadistica(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarEstadistica";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+
     }
 }

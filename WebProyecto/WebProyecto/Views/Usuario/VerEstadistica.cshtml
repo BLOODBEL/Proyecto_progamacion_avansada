@@ -1,0 +1,56 @@
+﻿@model WebProyecto.Entities.UsuarioEnt
+@{
+    ViewBag.Title = "VerEstadistica";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg'); background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1> Estadisticas del Usuario </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section element-animate">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+
+                @if (ViewBag.MensajeUsuario != null)
+                {
+                    <div class="alert alert-danger" role="alert" style="text-align:center">
+                        @ViewBag.MensajeUsuario
+                    </div>
+                }
+
+                @using (Html.BeginForm("ActualizarEstadistica", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
+                {
+                    @Html.HiddenFor(m => m.IdUsuario)
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Altura</label>
+                        @Html.TextBoxFor(m => m.Altura, new { @class = "form-control form-control-lg", @placeholder = "Altura", @type = "text" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Peso</label>
+                        @Html.TextBoxFor(m => m.Peso, new { @class = "form-control form-control-lg", @placeholder = "Peso", @type = "text" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Fecha de toma</label>
+                        @Html.TextBoxFor(m => m.Fecha, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha", @type = "date" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Editar</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/FuncionesSite/ConsultaNombres.js"></script>
+

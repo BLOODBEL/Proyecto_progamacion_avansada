@@ -17,7 +17,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities())
+                using (var context = new ProyectoPAEntities1())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Usuario
@@ -36,7 +36,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities())
+                using (var context = new ProyectoPAEntities1())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Usuario
@@ -56,7 +56,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities())
+                using (var context = new ProyectoPAEntities1())
                 {
                     context.ActualizarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Telefono, entidad.IdUsuario);
                     return "OK";
@@ -72,10 +72,87 @@ namespace APIProyecto.Controllers
         [Route("ActualizarEstadoUsuario")]
         public string ActualizarEstadoUsuario(UsuarioEnt entidad)
         {
-            using (var context = new ProyectoPAEntities())
+            using (var context = new ProyectoPAEntities1())
             {
                 context.ActualizarEstadoUsuario(entidad.IdUsuario);
                 return "OK";
+            }
+        }
+
+        /* ESTADISTICAS */
+
+        [HttpPost]
+        [Route("RegistrarEstadistica")]
+        public string RegistrarEstadistica(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities1())
+                {
+                    context.RegistrarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario);
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
+        [HttpGet]
+        [Route("VerEstadisticas")]
+        public List<Estadisticas> VerEstadisticas()
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities1())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    return (from x in context.Estadisticas
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<Estadisticas>();
+            }
+        }
+
+        [HttpGet]
+        [Route("VerEstadistica")]
+        public Estadisticas VerEstadistica(long q)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities1())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    return (from x in context.Estadisticas
+                            where x.IdUsuario == q
+                            select x).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        [HttpPut]
+        [Route("ActualizarEstadistica")]
+        public string ActualizarEstadistica(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities1())
+                {
+                    context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario, entidad.IdEstadisticas);
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
             }
         }
     }

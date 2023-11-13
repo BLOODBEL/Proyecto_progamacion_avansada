@@ -35,6 +35,7 @@
                             <th>Correo Electrónico</th>
                             <th>Telefono</th>
                             <th>Estado</th>
+                            <th>Ver Estadisticas</th>
                             <th>Cambiar Estado</th>
                             <th>Actualizar</th>
                         </tr>
@@ -58,6 +59,10 @@
                                 {
                                     <td>Inactivo</td>
                                 }
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("VerEstadistica","Usuario", new { q = item.IdUsuario })"><i class="fa fa-bar-chart"></i></a>
+                                </td>
 
                                 <td style="text-align:center">
                                     <a href="@Url.Action("ActualizarEstadoUsuario","Usuario", new { q = item.IdUsuario })"><i class="fa fa-exchange fa-lg"></i></a>

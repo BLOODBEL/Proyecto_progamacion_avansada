@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebProyecto.Entities.UsuarioEnt>
+
+@{
+    ViewBag.Title = "VerEstadisticas";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg'); background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Estadisticas de los Usuarios</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section element-animate">
+
+    <div class="col-md-12 text-center heading-wrap">
+
+        <a href="@Url.Action("RegistrarEstadistica", "Usuario")" class="btn btn-warning btn-block py-3">Registrar Nueva Estadística</a>
+
+    </div>
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Altura</th>
+                            <th>Peso</th>
+                            <th>Fecha de la toma</th>
+                            <th>Nombre del usuario</th>
+                            <th>Actualizar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Altura</td>
+                                <td>@item.Peso</td>
+                                <td>@item.Fecha</td>
+                                <td>@item.IdUsuario</td>
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ActualizarEstadistica","Usuario", new { q = item.IdUsuario })"><i class="fa fa-user fa-lg"></i></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+

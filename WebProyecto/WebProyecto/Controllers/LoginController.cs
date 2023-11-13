@@ -76,17 +76,7 @@ namespace WebProyecto.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return RedirectToAction("IniciarSesion", "Login");
-        }
-
-        public ActionResult contraseña()
-        {
-            return View();
-        }
-
-        public ActionResult PerfilUsuario()
-        {
-            return View();
+            return RedirectToAction("Index", "Login");
         }
 
     }
