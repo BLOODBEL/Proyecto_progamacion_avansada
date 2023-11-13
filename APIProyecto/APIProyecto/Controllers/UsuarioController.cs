@@ -159,7 +159,7 @@ namespace APIProyecto.Controllers
 
 [HttpPost]
 [Route("RegistrarClase")]
-public string RegistrarClase(UsuarioEnt entidad)
+public string RegistrarClase(ClaseEnt entidad)
 {
     try
     {
@@ -216,7 +216,7 @@ public Clase VerClase(long q)
 
 [HttpPut]
 [Route("ActualizarClase")]
-public string ActualizarClase(UsuarioEnt entidad)
+public string ActualizarClase(ClaseEnt entidad)
 {
     try
     {
