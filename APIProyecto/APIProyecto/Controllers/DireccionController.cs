@@ -8,21 +8,17 @@ using System.Web.Http;
 
 namespace APIProyecto.Controllers
 {
-    public class RolController : ApiController
-
+    public class DireccionController : ApiController
     {
-
-
         [HttpPost]
-        [Route("RegistrarRol")]
-        public string RegistrarRol(RolEnt entidad)
+        [Route("RegistrarDireccion")]
+        public string RegistrarDireccion(DireccionEnt entidad)
         {
             try
             {
                 using (var context = new ProyectoPAEntities())
                 {
-
-                    context.RegistrarRol(entidad.Descripcion);
+                    context.RegistrarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdUsuario);
                     return "OK";
                 }
             }
@@ -32,38 +28,36 @@ namespace APIProyecto.Controllers
             }
         }
 
-
-
         [HttpGet]
-        [Route("ConsultaRoles")]
-        public List<Rol> ConsultaRoles()
+        [Route("VerDirecciones")]
+        public List<Direccion> VerDirecciones()
         {
             try
             {
                 using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-                    return (from x in context.Rol
+                    return (from x in context.Direccion
                             select x).ToList();
                 }
             }
             catch (Exception)
             {
-                return new List<Rol>();
+                return new List<Direccion>();
             }
         }
 
         [HttpGet]
-        [Route("ConsultaRol")]
-        public Rol ConsultaRol(long q)
+        [Route("VerDireccion")]
+        public Direccion VerDireccion(long q)
         {
             try
             {
                 using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
-                    return (from x in context.Rol
-                            where x.IdRol == q
+                    return (from x in context.Direccion
+                            where x.IdUsuario == q
                             select x).FirstOrDefault();
                 }
             }
@@ -72,15 +66,16 @@ namespace APIProyecto.Controllers
                 return null;
             }
         }
+
         [HttpPut]
-        [Route("ActualizarRol")]
-        public string ActualizarRol(RolEnt entidad)
+        [Route("ActualizarDireccion")]
+        public string ActualizarDireccion(DireccionEnt entidad)
         {
             try
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarRol(entidad.Descripcion, entidad.IdRol);
+                    context.ActualizarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdUsuario, entidad.IdDireccion);
                     return "OK";
                 }
             }
