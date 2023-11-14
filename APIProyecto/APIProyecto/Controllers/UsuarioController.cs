@@ -17,7 +17,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Usuario
@@ -36,7 +36,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Usuario
@@ -56,7 +56,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.ActualizarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Telefono, entidad.IdUsuario);
                     return "OK";
@@ -72,7 +72,7 @@ namespace APIProyecto.Controllers
         [Route("ActualizarEstadoUsuario")]
         public string ActualizarEstadoUsuario(UsuarioEnt entidad)
         {
-            using (var context = new ProyectoPAEntities1())
+            using (var context = new ProyectoPAEntities())
             {
                 context.ActualizarEstadoUsuario(entidad.IdUsuario);
                 return "OK";
@@ -87,7 +87,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.RegistrarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario);
                     return "OK";
@@ -105,7 +105,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Estadisticas
@@ -124,7 +124,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Estadisticas
@@ -144,7 +144,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario, entidad.IdEstadisticas);
                     return "OK";
@@ -155,6 +155,8 @@ namespace APIProyecto.Controllers
                 return string.Empty;
             }
         }
+
+
         /* CLASES */
 
 [HttpPost]
@@ -163,9 +165,9 @@ public string RegistrarClase(ClaseEnt entidad)
 {
     try
     {
-        using (var context = new ProyectoPAEntities1())
+        using (var context = new ProyectoPAEntities())
         {
-            context.RegistrarEstadistica(entidad.Nombre, entidad.Descripcion, entidad.IdUsuario);
+            context.RegistrarClase(entidad.Nombre, entidad.Descripcion);
             return "OK";
         }
     }
@@ -181,10 +183,10 @@ public List<Clase> VerClases()
 {
     try
     {
-        using (var context = new ProyectoPAEntities1())
+        using (var context = new ProyectoPAEntities())
         {
             context.Configuration.LazyLoadingEnabled = false;
-            return (from x in context.Clases
+            return (from x in context.Clase
                     select x).ToList();
         }
     }
@@ -200,10 +202,10 @@ public Clase VerClase(long q)
 {
     try
     {
-        using (var context = new ProyectoPAEntities1())
+        using (var context = new ProyectoPAEntities())
         {
             context.Configuration.LazyLoadingEnabled = false;
-            return (from x in context.Clases
+            return (from x in context.Clase
                     where x.IdUsuario == q
                     select x).FirstOrDefault();
         }
@@ -220,9 +222,9 @@ public string ActualizarClase(ClaseEnt entidad)
 {
     try
     {
-        using (var context = new ProyectoPAEntities1())
+        using (var context = new ProyectoPAEntities())
         {
-            context.ActualizarEstadistica(entidad.Nombre, entidad.Descripcion, entidad.IdUsuario, entidad.IdClase);
+            context.ActualizarClase(entidad.Nombre, entidad.Descripcion, entidad.IdClase);
             return "OK";
         }
     }

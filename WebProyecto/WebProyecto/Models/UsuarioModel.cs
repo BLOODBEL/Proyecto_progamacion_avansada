@@ -132,23 +132,23 @@ public string RegistrarClase(ClaseEnt entidad)
         return res.Content.ReadFromJsonAsync<string>().Result;
     }
 }
-public List<UsuarioEnt> VerClase()
+public List<ClaseEnt> VerClases()
 {
     using (var client = new HttpClient())
     {
-        var urlApi = rutaServidor + "VerClase";
+        var urlApi = rutaServidor + "VerClases";
         var res = client.GetAsync(urlApi).Result;
-        return res.Content.ReadFromJsonAsync<List<UsuarioEnt>>().Result;
+        return res.Content.ReadFromJsonAsync<List<ClaseEnt>>().Result;
     }
 }
 
-public UsuarioEnt VerClase(long q)
+public ClaseEnt VerClase(long q)
 {
     using (var client = new HttpClient())
     {
         var urlApi = rutaServidor + "VerClase?q=" + q;
         var res = client.GetAsync(urlApi).Result;
-        return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
+        return res.Content.ReadFromJsonAsync<ClaseEnt>().Result;
     }
 }
 

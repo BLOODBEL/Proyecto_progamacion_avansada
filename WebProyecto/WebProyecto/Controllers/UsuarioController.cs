@@ -171,6 +171,9 @@ namespace WebProyecto.Controllers
                 return View();
             }
         }
+
+
+
         /* CLASES */
 
 [HttpGet]
@@ -180,7 +183,7 @@ public ActionResult RegistrarClase()
 }
 
 [HttpPost]
-public ActionResult RegistrarClase(UsuarioEnt entidad)
+public ActionResult RegistrarClase(ClaseEnt entidad)
 {
     string respuesta = claseUsuario.RegistrarClase(entidad);
 
@@ -196,9 +199,9 @@ public ActionResult RegistrarClase(UsuarioEnt entidad)
 }
 
 [HttpGet]
-public ActionResult VerClase()
+public ActionResult VerClases()
 {
-    var datos = claseUsuario.VerClase();
+    var datos = claseUsuario.VerClases();
     return View(datos);
 }
 
@@ -213,7 +216,7 @@ public ActionResult VerClase()
 }
 
 [HttpPost]
-public ActionResult VerClase(UsuarioEnt entidad)
+public ActionResult VerClase(ClaseEnt entidad)
 {
     string respuesta = claseUsuario.ActualizarClase(entidad);
 

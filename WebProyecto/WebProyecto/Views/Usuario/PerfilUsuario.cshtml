@@ -1,7 +1,7 @@
 ﻿@model WebProyecto.Entities.UsuarioEnt
 @{
     ViewBag.Title = "PerfilUsuario";
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
 }
 
 <section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
@@ -49,11 +49,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Correo Electrónico</label>
-                        @Html.TextBoxFor(m => m.Apellidos1, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "text" })
+                        @Html.TextBoxFor(m => m.Apellidos1, new { @class = "form-control form-control-lg", @placeholder = "Primer Apellido", @type = "text" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Correo Electrónico</label>
-                        @Html.TextBoxFor(m => m.Apellidos2, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "text" })
+                        @Html.TextBoxFor(m => m.Apellidos2, new { @class = "form-control form-control-lg", @placeholder = "Segundo Apellido", @type = "text" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Correo Electrónico</label>

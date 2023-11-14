@@ -16,7 +16,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
 
                     context.RegistrarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Telefono);
@@ -35,7 +35,7 @@ namespace APIProyecto.Controllers
         {
             try
             {
-                using (var context = new ProyectoPAEntities1())
+                using (var context = new ProyectoPAEntities())
                 {
                     //return (from x in context.TUsuario 
                     //             where x.Correo == entidad.Correo

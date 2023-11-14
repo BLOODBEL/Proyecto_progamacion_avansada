@@ -151,11 +151,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Entities\ClaseEnt.cs" />
+    <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RolModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,6 +315,13 @@
     <Content Include="Views\Usuario\VerEstadisticas.cshtml" />
     <Content Include="Views\Usuario\RegistrarEstadistica.cshtml" />
     <Content Include="Views\Usuario\VerEstadistica.cshtml" />
+    <Content Include="Views\Shared\_Layout_adm.cshtml" />
+    <Content Include="Views\Usuario\RegistrarClase.cshtml" />
+    <Content Include="Views\Usuario\VerClase.cshtml" />
+    <Content Include="Views\Usuario\VerClases.cshtml" />
+    <Content Include="Views\Rol\ConsultaRoles.cshtml" />
+    <Content Include="Views\Rol\ActualizarRol.cshtml" />
+    <Content Include="Views\Rol\RegistrarRol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

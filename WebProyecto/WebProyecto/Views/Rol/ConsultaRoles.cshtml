@@ -1,7 +1,7 @@
-﻿@model IEnumerable<WebProyecto.Entities.UsuarioEnt>
+﻿@model IEnumerable<WebProyecto.Entities.RolEnt>
 
 @{
-    ViewBag.Title = "VerEstadisticas";
+    ViewBag.Title = "ConsultaRoles";
     Layout = "~/Views/Shared/_Layout_adm.cshtml";
 }
 
@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row slider-text align-items-center justify-content-center">
                 <div class="col-md-8 text-center col-sm-12 element-animate">
-                    <h1>Estadisticas de los Usuarios</h1>
+                    <h1>Roles</h1>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="col-md-12 text-center heading-wrap">
 
-        <a href="@Url.Action("RegistrarEstadistica", "Usuario")" class="btn btn-warning btn-block py-3">Registrar Nueva Estadística</a>
+        <a href="@Url.Action("RegistrarRol", "Rol")" class="btn btn-warning btn-block py-3">Registrar Nuevo Rol</a>
 
     </div>
 
@@ -33,10 +33,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Altura</th>
-                            <th>Peso</th>
-                            <th>Fecha de la toma</th>
-                            <th>Nombre del usuario</th>
+                            <th>Descripcion</th>
                             <th>Actualizar</th>
                         </tr>
                     </thead>
@@ -44,13 +41,11 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Altura</td>
-                                <td>@item.Peso</td>
-                                <td>@item.Fecha</td>
-                                <td>@item.IdUsuario</td>
+                                <td>@item.Descripcion</td>
+                                
 
                                 <td style="text-align:center">
-                                    <a href="@Url.Action("ActualizarEstadistica","Usuario", new { q = item.IdEstadisticas })"><i class="fa fa-user fa-lg"></i></a>
+                                    <a href="@Url.Action("ActualizarRol","Rol", new { q = item.IdRol })"><i class="fa fa-user fa-lg"></i></a>
                                 </td>
 
                             </tr>

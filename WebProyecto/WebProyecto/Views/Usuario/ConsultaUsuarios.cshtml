@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "ConsultaUsuarios";
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
 }
 
 <section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
@@ -34,6 +34,7 @@
                             <th>Segundo Apellido</th>
                             <th>Correo Electrónico</th>
                             <th>Telefono</th>
+                           
                             <th>Estado</th>
                             <th>Ver Estadisticas</th>
                             <th>Cambiar Estado</th>
@@ -50,6 +51,7 @@
                                 <td>@item.Apellidos2</td>
                                 <td>@item.CorreoElectronico</td>
                                 <td>@item.Telefono</td>
+                            
 
                                 @if (item.Estado)
                                 {

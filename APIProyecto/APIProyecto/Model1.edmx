@@ -212,6 +212,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ActualizarClase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="IdClase" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="ActualizarCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -221,12 +226,28 @@
           <Parameter Name="Telefono" Type="varchar" Mode="In" />
           <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="ActualizarEstadistica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Altura" Type="decimal" Mode="In" />
+          <Parameter Name="Peso" Type="decimal" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+          <Parameter Name="IdEstadisticas" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="ActualizarEstadoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ActualizarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="IdRol" Type="bigint" Mode="In" />
         </Function>
         <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarClase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
         </Function>
         <Function Name="RegistrarCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
@@ -236,6 +257,15 @@
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
           <Parameter Name="Telefono" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarEstadistica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Altura" Type="decimal" Mode="In" />
+          <Parameter Name="Peso" Type="decimal" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="RegistrarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="ProyectoPAModelStoreContainer">
           <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
@@ -570,6 +600,11 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Suscripcion" EntitySet="Suscripcion" />
           </AssociationSet>
+          <FunctionImport Name="ActualizarClase">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdClase" Mode="In" Type="Int64" />
+          </FunctionImport>
           <FunctionImport Name="ActualizarCuenta">
             <Parameter Name="Identificacion" Mode="In" Type="String" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -579,12 +614,28 @@
             <Parameter Name="Telefono" Mode="In" Type="String" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="ActualizarEstadistica">
+            <Parameter Name="Altura" Mode="In" Type="Decimal" />
+            <Parameter Name="Peso" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="IdEstadisticas" Mode="In" Type="Int64" />
+          </FunctionImport>
           <FunctionImport Name="ActualizarEstadoUsuario">
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarRol">
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdRol" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesion" ReturnType="Collection(ProyectoPAModel.IniciarSesion_Result)">
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarClase">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarCuenta">
             <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -594,6 +645,15 @@
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Contrasenna" Mode="In" Type="String" />
             <Parameter Name="Telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarEstadistica">
+            <Parameter Name="Altura" Mode="In" Type="Decimal" />
+            <Parameter Name="Peso" Mode="In" Type="Decimal" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarRol">
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
@@ -709,8 +769,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarClase" FunctionName="ProyectoPAModel.Store.ActualizarClase" />
           <FunctionImportMapping FunctionImportName="ActualizarCuenta" FunctionName="ProyectoPAModel.Store.ActualizarCuenta" />
+          <FunctionImportMapping FunctionImportName="ActualizarEstadistica" FunctionName="ProyectoPAModel.Store.ActualizarEstadistica" />
           <FunctionImportMapping FunctionImportName="ActualizarEstadoUsuario" FunctionName="ProyectoPAModel.Store.ActualizarEstadoUsuario" />
+          <FunctionImportMapping FunctionImportName="ActualizarRol" FunctionName="ProyectoPAModel.Store.ActualizarRol" />
           <FunctionImportMapping FunctionImportName="IniciarSesion" FunctionName="ProyectoPAModel.Store.IniciarSesion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoPAModel.IniciarSesion_Result">
@@ -726,7 +789,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegistrarClase" FunctionName="ProyectoPAModel.Store.RegistrarClase" />
           <FunctionImportMapping FunctionImportName="RegistrarCuenta" FunctionName="ProyectoPAModel.Store.RegistrarCuenta" />
+          <FunctionImportMapping FunctionImportName="RegistrarEstadistica" FunctionName="ProyectoPAModel.Store.RegistrarEstadistica" />
+          <FunctionImportMapping FunctionImportName="RegistrarRol" FunctionName="ProyectoPAModel.Store.RegistrarRol" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

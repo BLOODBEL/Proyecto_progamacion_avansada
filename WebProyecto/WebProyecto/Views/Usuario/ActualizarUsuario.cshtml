@@ -1,7 +1,7 @@
 ﻿@model WebProyecto.Entities.UsuarioEnt
 @{
     ViewBag.Title = "ActualizarUsuario";
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
 }
 
 <section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
@@ -48,12 +48,12 @@
                         @Html.TextBoxFor(m => m.Nombre, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword4">Correo Electrónico</label>
-                        @Html.TextBoxFor(m => m.Apellidos1, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "text" })
+                        <label for="exampleInputPassword4">Primer Apellido</label>
+                        @Html.TextBoxFor(m => m.Apellidos1, new { @class = "form-control form-control-lg", @placeholder = "Primer Apellido", @type = "text" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword4">Correo Electrónico</label>
-                        @Html.TextBoxFor(m => m.Apellidos2, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "text" })
+                        <label for="exampleInputPassword4">Segundo Apellido</label>
+                        @Html.TextBoxFor(m => m.Apellidos2, new { @class = "form-control form-control-lg", @placeholder = "Segundo Apellido", @type = "text" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Correo Electrónico</label>

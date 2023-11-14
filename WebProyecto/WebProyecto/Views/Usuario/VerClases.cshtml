@@ -1,8 +1,8 @@
-﻿@model WebProyecto.Entities.ClaseEnt
+﻿@model IEnumerable<WebProyecto.Entities.ClaseEnt>
 
 @{
     ViewBag.Title = "VerClase";
-    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
 }
 
 <section class="home-slider-loop-false inner-page owl-carousel" style="margin-bottom: -50px;">
@@ -17,37 +17,51 @@
     </div>
 </section>
 
+
 <section class="section element-animate">
+
+    <div class="col-md-12 text-center heading-wrap">
+
+        <a href="@Url.Action("RegistrarClase", "Usuario")" class="btn btn-warning btn-block py-3">Registrar Nueva Clase</a>
+
+    </div>
+
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
 
-                @if (ViewBag.MensajeClase != null)
-                {
-                    <div class="alert alert-danger" role="alert" style="text-align:center">
-                        @ViewBag.MensajeClase
-                    </div>
-                }
 
-                @using (Html.BeginForm("ActualizarClase", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
-                {
-                    @Html.HiddenFor(m => m.IdClase)
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword4">Nombre</label>
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword4">Descripción</label>
-                        @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripción", @type = "text" })
-                    </div>
+                            <th>Actualizar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Descripcion</td>
+                                
+                                <td>@item.IdUsuario</td>
 
-                    <button type="submit" class="btn btn-primary mr-2">Editar</button>
-                }
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("Actualizar","Usuario", new { q = item.IdUsuario })"><i class="fa fa-user fa-lg"></i></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
 </section>
-<script src="~/FuncionesSite/ConsultaNombres.js"></script>
+
 
 
