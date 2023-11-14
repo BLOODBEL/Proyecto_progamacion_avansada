@@ -127,8 +127,8 @@ namespace WebProyecto.Controllers
         public ActionResult VerEstadistica()
         {
             long q = long.Parse(Session["IdUsuario"].ToString());
-            var datos = claseUsuario.ConsultaUsuario(q);
-            Session["Nombre"] = datos.Nombre;
+            var datos = claseUsuario.VerEstadistica(q);
+            Session["IdUsuario"] = datos.IdUsuario;
             
             return View(datos);
         }
