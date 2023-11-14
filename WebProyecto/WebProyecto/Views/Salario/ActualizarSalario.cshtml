@@ -1,0 +1,63 @@
+﻿@model WebProyecto.Entities.SalarioEnt
+@{
+    ViewBag.Title = "ActualizarSalario";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
+}
+
+<section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg'); background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1> Actualizar de Salario</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section element-animate">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+
+                @if (ViewBag.MensajeSalario != null)
+                {
+                    <div class="alert alert-danger" role="alert" style="text-align:center">
+                        @ViewBag.MensajeSalario
+                    </div>
+                }
+
+                @using (Html.BeginForm("ActualizarSalario", "Salario", FormMethod.Post, new { @class = "pt-3" }))
+                {
+                    @Html.HiddenFor(m => m.IdSalario)
+
+                    <div class="form-group">
+                        <label for="exampleInputName1">Identificación</label>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Nombre</label>
+                        @Html.TextBoxFor(m => m.Nombre, new { @readOnly = "readOnly", @style = "background-color:#eeeeee", @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">decripcion</label>
+                        @Html.TextBoxFor(m => m.decripcion, new { @class = "form-control form-control-lg", @placeholder = "Primer Apellido", @type = "text" })
+                    </div>
+                   
+                     
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Salario</label>
+                        @Html.TextBoxFor(m => m.Salario, new { @class = "form-control form-control-lg", @placeholder = "Telefono", @type = "text" })
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Procesar</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/FuncionesSite/ConsultaNombres.js"></script>
+

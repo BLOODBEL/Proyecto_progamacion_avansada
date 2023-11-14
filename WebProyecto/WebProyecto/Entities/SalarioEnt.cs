@@ -5,13 +5,10 @@ using System.Web;
 
 namespace WebProyecto.Entities
 {
-    public class SalarioEnt
+    public class RolEnt
     {
-        public long IdSalario { get; set; }
-        public string Salario { get; set; }
-        public string descripcion { get; set;}
-
-       
-
+        public long IdRol { get; set; }
+        public string Descripcion { get; set; }
+        public long IdUsuario { get; set; }
     }
 }
