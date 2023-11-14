@@ -206,32 +206,6 @@ public ActionResult VerClases()
 }
 
 [HttpGet]
-public ActionResult VerClase()
-{
-    long q = long.Parse(Session["IdUsuario"].ToString());
-    var datos = claseUsuario.ConsultaUsuario(q);
-    Session["Nombre"] = datos.Nombre;
-
-    return View(datos);
-}
-
-[HttpPost]
-public ActionResult VerClase(ClaseEnt entidad)
-{
-    string respuesta = claseUsuario.ActualizarClase(entidad);
-
-    if (respuesta == "OK")
-    {
-        return RedirectToAction("Index", "Login");
-    }
-    else
-    {
-        ViewBag.MensajeUsuario = "No se ha podido actualizar la clase";
-        return View();
-    }
-}
-
-[HttpGet]
 public ActionResult ActualizarClase(long q)
 {
     var datos = claseUsuario.VerClase(q);
@@ -239,13 +213,13 @@ public ActionResult ActualizarClase(long q)
 }
 
 [HttpPost]
-public ActionResult ActualizarClase(UsuarioEnt entidad)
+public ActionResult ActualizarClase(ClaseEnt entidad)
 {
-    string respuesta = claseUsuario.ActualizarCuenta(entidad);
+    string respuesta = claseUsuario.ActualizarClase(entidad);
 
     if (respuesta == "OK")
     {
-        return RedirectToAction("VerClase", "Usuario");
+        return RedirectToAction("VerClases", "Usuario");
     }
     else
     {

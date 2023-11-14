@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebProyecto.Entities.SalarioEnt>
+﻿
+@model IEnumerable<WebProyecto.Entities.SalarioEnt>
 
 @{
     ViewBag.Title = "ConsultaSalario";
@@ -20,6 +21,11 @@
 
 
 <section class="section element-animate">
+    <div class="col-md-12 text-center heading-wrap">
+
+        <a href="@Url.Action("RegistrarSalario", "Salario")" class="btn btn-warning btn-block py-3">Registrar Salario</a>
+
+    </div>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -28,27 +34,28 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                           
-                            <th>descripcion</th>
                             <th>Salario</th>
+                            <th>descripcion</th>
+                            <th>Id del Usuario</th>
+                            <th>Actualizar</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                               
-                                <td>@item.descripcion</td>
                                 <td>@item.Salario</td>
-                            
+                                <td>@item.Descripcion</td>
+                                <td>@item.IdSalario</td>
 
-                               
-                               
 
-                             
+
                                 <td style="text-align:center">
-                                    <a href="@Url.Action("ActualizarSalario","Salario", new { q = item.IdSalario })"><i class="fa fa-user fa-lg"></i></a>
+                                    <a href="@Url.Action("ActualizarSalario","Salario", new { q = item.IdSalario })"><i class="fa fa-bar-chart"></i></a>
                                 </td>
+
 
                             </tr>
                         }

@@ -34,6 +34,7 @@ namespace APIProyecto
         public virtual DbSet<Factura> Factura { get; set; }
         public virtual DbSet<InscritoEn> InscritoEn { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Salario> Salario { get; set; }
         public virtual DbSet<Suscripcion> Suscripcion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     
@@ -159,6 +160,23 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarRol", descripcionParameter, idRolParameter);
         }
     
+        public virtual int ActualizarSalario(Nullable<long> idSalario, Nullable<decimal> salario, string descripcion)
+        {
+            var idSalarioParameter = idSalario.HasValue ?
+                new ObjectParameter("idSalario", idSalario) :
+                new ObjectParameter("idSalario", typeof(long));
+    
+            var salarioParameter = salario.HasValue ?
+                new ObjectParameter("Salario", salario) :
+                new ObjectParameter("Salario", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarSalario", idSalarioParameter, salarioParameter, descripcionParameter);
+        }
+    
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
         {
             var correoElectronicoParameter = correoElectronico != null ?
@@ -267,6 +285,23 @@ namespace APIProyecto
                 new ObjectParameter("Descripcion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarRol", descripcionParameter);
+        }
+    
+        public virtual int RegistrarSalario(string descripcion, Nullable<decimal> salario, Nullable<long> idUsuario)
+        {
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var salarioParameter = salario.HasValue ?
+                new ObjectParameter("Salario", salario) :
+                new ObjectParameter("Salario", typeof(decimal));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSalario", descripcionParameter, salarioParameter, idUsuarioParameter);
         }
     }
 }

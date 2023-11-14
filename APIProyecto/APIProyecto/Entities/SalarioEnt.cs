@@ -9,9 +9,9 @@ namespace APIProyecto.Entities
 
     {
         public long IdSalario { get; set; }
-        public string Salario { get; set; }
+        public decimal Salario { get; set; }
         public string Descripcion { get; set; }
+        public long IdUsuario { get; set; }
 
-      
     }
 }

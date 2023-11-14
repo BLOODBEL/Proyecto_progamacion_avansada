@@ -17,11 +17,11 @@ namespace APIProyecto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Clase = new HashSet<Clase>();
             this.ClaseEntrenador = new HashSet<ClaseEntrenador>();
             this.Direccion = new HashSet<Direccion>();
             this.Estadisticas = new HashSet<Estadisticas>();
             this.InscritoEn = new HashSet<InscritoEn>();
+            this.Salario = new HashSet<Salario>();
             this.Suscripcion = new HashSet<Suscripcion>();
         }
     
@@ -37,8 +37,6 @@ namespace APIProyecto
         public long IdRol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clase> Clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClaseEntrenador> ClaseEntrenador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direccion> Direccion { get; set; }
@@ -47,6 +45,8 @@ namespace APIProyecto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InscritoEn> InscritoEn { get; set; }
         public virtual Rol Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Salario> Salario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suscripcion> Suscripcion { get; set; }
     }

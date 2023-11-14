@@ -1,16 +1,18 @@
-﻿using System;
+﻿using APIProyecto.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace APIProyecto.Controllers
 {
-    public class SalarioController : Controller
+    public class SalarioController : ApiController
     {
         [HttpGet]
-        [Route("ConsultaSalario")]
-        public List<Salario"> ConsultaSalario"()
+        [Route("ConsultaSalarios")]
+        public List<Salario> ConsultaSalarios()
         {
             try
             {
@@ -26,22 +28,61 @@ namespace APIProyecto.Controllers
                 return new List<Salario>();
             }
         }
-[HttpPut]
-[Route("ActualizarSalario)]
-public string ActualizarSalario(SalarioEnt entidad)
-{
-    try
-    {
-        using (var context = new ProyectoPAEntities())
+        [HttpGet]
+        [Route("ConsultaSalario")]
+        public Salario ConsultaSalario(long q)
         {
-            context.ActualizarSalario(entidad.Salario, entidad.Descripcion);
-            return "OK";
+            try
+            {
+                using (var context = new ProyectoPAEntities())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    return (from x in context.Salario
+                            where x.idSalario == q
+                            select x).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
-    }
-    catch (Exception)
-    {
-        return string.Empty;
-    }
-}
+
+        [HttpPost]
+        [Route("RegistrarSalario")]
+        public string RegistrarSalario(SalarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities())
+                {
+                    context.RegistrarSalario(entidad.Descripcion, entidad.Salario, entidad.IdUsuario);
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
+        [HttpPut]
+        [Route("ActualizarSalario")]
+        public string ActualizarSalario(SalarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities())
+                {
+                    context.ActualizarSalario(entidad.IdSalario ,entidad.Salario, entidad.Descripcion);
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
 
     }
+}

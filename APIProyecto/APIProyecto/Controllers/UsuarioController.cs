@@ -197,7 +197,7 @@ public List<Clase> VerClases()
 }
 
 [HttpGet]
-[Route("VerClases")]
+[Route("VerClase")]
 public Clase VerClase(long q)
 {
     try
@@ -206,7 +206,7 @@ public Clase VerClase(long q)
         {
             context.Configuration.LazyLoadingEnabled = false;
             return (from x in context.Clase
-                    where x.IdUsuario == q
+                    where x.IdClase == q
                     select x).FirstOrDefault();
         }
     }
