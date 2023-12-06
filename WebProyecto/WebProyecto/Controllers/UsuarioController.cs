@@ -159,7 +159,7 @@ namespace WebProyecto.Controllers
         [HttpPost]
         public ActionResult ActualizarEstadistica(UsuarioEnt entidad)
         {
-            string respuesta = claseUsuario.ActualizarCuenta(entidad);
+            string respuesta = claseUsuario.ActualizarEstadistica(entidad);
 
             if (respuesta == "OK")
             {

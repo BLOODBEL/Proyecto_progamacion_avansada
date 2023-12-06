@@ -56,7 +56,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.RegistrarSalario(entidad.Descripcion, entidad.Salario, entidad.IdUsuario);
+                    context.RegistrarSalario(entidad.IdUsuario, entidad.Salario, entidad.Descripcion);
                     return "OK";
                 }
             }

@@ -18,6 +18,7 @@ namespace APIProyecto
         public Suscripcion()
         {
             this.Factura = new HashSet<Factura>();
+            this.Factura1 = new HashSet<Factura>();
         }
     
         public long IdSuscripcion { get; set; }
@@ -28,6 +29,9 @@ namespace APIProyecto
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Factura> Factura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Factura> Factura1 { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario1 { get; set; }
     }
 }
