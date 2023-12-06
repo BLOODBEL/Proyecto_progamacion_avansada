@@ -57,7 +57,7 @@ namespace APIProyecto.Controllers
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Direccion
-                            where x.IdUsuario == q
+                            where x.IdDireccion == q
                             select x).FirstOrDefault();
                 }
             }
@@ -75,7 +75,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdUsuario, entidad.IdDireccion);
+                    context.ActualizarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdDireccion);
                     return "OK";
                 }
             }

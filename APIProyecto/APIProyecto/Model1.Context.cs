@@ -88,7 +88,7 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCuenta", identificacionParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, telefonoParameter, idUsuarioParameter);
         }
     
-        public virtual int ActualizarDireccion(string calle, string codPostal, string otraSena, Nullable<long> idUsuario, Nullable<long> idDireccion)
+        public virtual int ActualizarDireccion(string calle, string codPostal, string otraSena, Nullable<long> idDireccion)
         {
             var calleParameter = calle != null ?
                 new ObjectParameter("Calle", calle) :
@@ -102,18 +102,14 @@ namespace APIProyecto
                 new ObjectParameter("OtraSena", otraSena) :
                 new ObjectParameter("OtraSena", typeof(string));
     
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(long));
-    
             var idDireccionParameter = idDireccion.HasValue ?
                 new ObjectParameter("IdDireccion", idDireccion) :
                 new ObjectParameter("IdDireccion", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarDireccion", calleParameter, codPostalParameter, otraSenaParameter, idUsuarioParameter, idDireccionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarDireccion", calleParameter, codPostalParameter, otraSenaParameter, idDireccionParameter);
         }
     
-        public virtual int ActualizarEstadistica(Nullable<decimal> altura, Nullable<decimal> peso, Nullable<System.DateTime> fecha, Nullable<long> idUsuario, Nullable<long> idEstadisticas)
+        public virtual int ActualizarEstadistica(Nullable<decimal> altura, Nullable<decimal> peso, Nullable<System.DateTime> fecha, Nullable<long> idEstadisticas)
         {
             var alturaParameter = altura.HasValue ?
                 new ObjectParameter("Altura", altura) :
@@ -127,15 +123,11 @@ namespace APIProyecto
                 new ObjectParameter("Fecha", fecha) :
                 new ObjectParameter("Fecha", typeof(System.DateTime));
     
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(long));
-    
             var idEstadisticasParameter = idEstadisticas.HasValue ?
                 new ObjectParameter("IdEstadisticas", idEstadisticas) :
                 new ObjectParameter("IdEstadisticas", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEstadistica", alturaParameter, pesoParameter, fechaParameter, idUsuarioParameter, idEstadisticasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEstadistica", alturaParameter, pesoParameter, fechaParameter, idEstadisticasParameter);
         }
     
         public virtual int ActualizarEstadoUsuario(Nullable<long> idUsuario)

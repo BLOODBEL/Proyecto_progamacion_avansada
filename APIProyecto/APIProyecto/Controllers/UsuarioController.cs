@@ -122,20 +122,14 @@ namespace APIProyecto.Controllers
         [Route("VerEstadistica")]
         public Estadisticas VerEstadistica(long q)
         {
-            try
-            {
+            
                 using (var context = new ProyectoPAEntities())
                 {
                     context.Configuration.LazyLoadingEnabled = false;
                     return (from x in context.Estadisticas
-                            where x.IdUsuario == q
+                            where x.IdEstadisticas == q
                             select x).FirstOrDefault();
                 }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
         }
 
         [HttpPut]
@@ -146,7 +140,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario, entidad.IdEstadisticas);
+                    context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha,entidad.IdEstadisticas);
                     return "OK";
                 }
             }

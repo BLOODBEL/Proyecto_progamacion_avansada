@@ -31,23 +31,19 @@
 
                 @using (Html.BeginForm("ActualizarDireccion", "Direccion", FormMethod.Post, new { @class = "pt-3" }))
                 {
-                    @Html.HiddenFor(m => m.IdUsuario)
+                    @Html.HiddenFor(m => m.IdDireccion)
 
                     <div class="form-group">
-                        <label for="exampleInputEmail3">Altura</label>
+                        <label for="exampleInputEmail3">Calle</label>
                         @Html.TextBoxFor(m => m.Calle, new { @class = "form-control form-control-lg", @placeholder = "Calle", @type = "text" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword4">Peso</label>
+                        <label for="exampleInputPassword4">CodPostal</label>
                         @Html.TextBoxFor(m => m.CodPostal, new { @class = "form-control form-control-lg", @placeholder = "CodPostal", @type = "text" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword4">Fecha de toma</label>
+                        <label for="exampleInputPassword4">Otras Señas</label>
                         @Html.TextBoxFor(m => m.OtraSena, new { @class = "form-control form-control-lg", @placeholder = "Otras Señas", @type = "text" })
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword4">Id del Usuario</label>
-                        @Html.TextBoxFor(m => m.IdUsuario, new { @class = "form-control form-control-lg", @placeholder = "IdUsuario", @type = "text" })
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2">Procesar</button>

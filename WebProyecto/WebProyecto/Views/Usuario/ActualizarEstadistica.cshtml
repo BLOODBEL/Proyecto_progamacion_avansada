@@ -31,7 +31,7 @@
 
                 @using (Html.BeginForm("ActualizarEstadistica", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
                 {
-                    @Html.HiddenFor(m => m.IdUsuario)
+                    @Html.HiddenFor(m => m.IdEstadisticas)
 
                     <div class="form-group">
                         <label for="exampleInputEmail3">Altura</label>
@@ -45,10 +45,7 @@
                         <label for="exampleInputPassword4">Fecha de toma</label>
                         @Html.TextBoxFor(m => m.Fecha, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha", @type = "date" })
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword4">Id del Usuario</label>
-                        @Html.TextBoxFor(m => m.IdUsuario, new { @class = "form-control form-control-lg", @placeholder = "IdUsuario", @type = "text" })
-                    </div>
+                 
 
                     <button type="submit" class="btn btn-primary mr-2">Procesar</button>
                 }

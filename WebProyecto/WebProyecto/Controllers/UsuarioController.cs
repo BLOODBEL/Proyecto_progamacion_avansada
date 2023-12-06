@@ -123,31 +123,7 @@ namespace WebProyecto.Controllers
             return View(datos);
         }
 
-        [HttpGet]
-        public ActionResult VerEstadistica()
-        {
-            long q = long.Parse(Session["IdUsuario"].ToString());
-            var datos = claseUsuario.VerEstadistica(q);
-            Session["IdUsuario"] = datos.IdUsuario;
-            
-            return View(datos);
-        }
-
-        [HttpPost]
-        public ActionResult VerEstadistica(UsuarioEnt entidad)
-        {
-            string respuesta = claseUsuario.ActualizarEstadistica(entidad);
-
-            if (respuesta == "OK")
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                ViewBag.MensajeUsuario = "No se ha podido actualizar la estadística";
-                return View();
-            }
-        }
+      
 
         [HttpGet]
         public ActionResult ActualizarEstadistica(long q)

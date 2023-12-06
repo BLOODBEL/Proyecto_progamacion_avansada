@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clase">
           <Key>
             <PropertyRef Name="IdClase" />
@@ -359,14 +359,12 @@
           <Parameter Name="Calle" Type="varchar" Mode="In" />
           <Parameter Name="CodPostal" Type="varchar" Mode="In" />
           <Parameter Name="OtraSena" Type="varchar" Mode="In" />
-          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
           <Parameter Name="IdDireccion" Type="bigint" Mode="In" />
         </Function>
         <Function Name="ActualizarEstadistica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Altura" Type="decimal" Mode="In" />
           <Parameter Name="Peso" Type="decimal" Mode="In" />
           <Parameter Name="Fecha" Type="date" Mode="In" />
-          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
           <Parameter Name="IdEstadisticas" Type="bigint" Mode="In" />
         </Function>
         <Function Name="ActualizarEstadoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -510,8 +508,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1000,18 +997,16 @@
             <Parameter Name="Calle" Mode="In" Type="String" />
             <Parameter Name="CodPostal" Mode="In" Type="String" />
             <Parameter Name="OtraSena" Mode="In" Type="String" />
-            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
             <Parameter Name="IdDireccion" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarEstadistica">
             <Parameter Name="Altura" Mode="In" Type="Decimal" />
             <Parameter Name="Peso" Mode="In" Type="Decimal" />
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
             <Parameter Name="IdEstadisticas" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarEstadoUsuario">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarRol">
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -1052,7 +1047,7 @@
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarRol">
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarSalario">
             <Parameter Name="idSalario" Mode="In" Type="Int64" />

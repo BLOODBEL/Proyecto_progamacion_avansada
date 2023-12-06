@@ -42,31 +42,6 @@ namespace WebProyecto.Controllers
             return View(datos);
         }
 
-        [HttpGet]
-        public ActionResult VerDireccion()
-        {
-            long q = long.Parse(Session["IdUsuario"].ToString());
-            var datos = claseDireccion.VerDireccion(q);
-            Session["IdUsuario"] = datos.IdUsuario;
-
-            return View(datos);
-        }
-
-        [HttpPost]
-        public ActionResult VerDireccion(DireccionEnt entidad)
-        {
-            string respuesta = claseDireccion.ActualizarDireccion(entidad);
-
-            if (respuesta == "OK")
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                ViewBag.MensajeUsuario = "No se ha podido actualizar la estadística";
-                return View();
-            }
-        }
 
         [HttpGet]
         public ActionResult ActualizarDireccion(long q)
