@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clase">
           <Key>
             <PropertyRef Name="IdClase" />
@@ -12,7 +12,6 @@
           <Property Name="IdClase" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="ClaseEntrenador">
           <Key>
@@ -71,10 +70,10 @@
           <Key>
             <PropertyRef Name="idSalario" />
           </Key>
-          <Property Name="idSalario" Type="bigint" Nullable="false" />
-          <Property Name="salario" Type="numeric" Precision="18" Scale="4" />
-          <Property Name="descripcion" Type="varchar" MaxLength="250" />
-          <Property Name="idUsuario" Type="bigint" />
+          <Property Name="idSalario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="salario" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Suscripcion">
           <Key>
@@ -101,19 +100,7 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="IdRol" Type="bigint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Clase__IdUsuario__6EF57B66">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Clase">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdCla__14270015">
+        <Association Name="FK__ClaseEntr__IdCla__25518C17">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,31 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaseEntr__IdCla__6FE99F9F">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="ClaseEntrenador">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdCla__70DDC3D8">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="ClaseEntrenador">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdUsu__151B244E">
+        <Association Name="FK__ClaseEntr__IdUsu__245D67DE">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Direccion__IdUsu__160F4887">
+        <Association Name="FK__Direccion__IdUsu__1BC821DD">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,19 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Direccion__IdUsu__71D1E811">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Estadisti__IdUsu__1332DBDC">
+        <Association Name="FK__Estadisti__IdUsu__18EBB532">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,19 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Estadisti__IdUsu__72C60C4A">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Estadisticas">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Factura__IdSuscr__123EB7A3">
+        <Association Name="FK__Factura__IdSuscr__2180FB33">
           <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="1" />
           <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,19 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Factura__IdSuscr__73BA3083">
-          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="1" />
-          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suscripcion">
-              <PropertyRef Name="IdSuscripcion" />
-            </Principal>
-            <Dependent Role="Factura">
-              <PropertyRef Name="IdSuscripcion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__InscritoE__IdCla__114A936A">
+        <Association Name="FK__InscritoE__IdCla__282DF8C2">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,19 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InscritoE__IdCla__74AE54BC">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="InscritoEn">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__InscritoE__IdUsu__10566F31">
+        <Association Name="FK__InscritoE__IdUsu__29221CFB">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
           <ReferentialConstraint>
@@ -269,31 +184,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InscritoE__IdUsu__75A278F5">
+        <Association Name="FK__Salario__IdUsuar__4F47C5E3">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="InscritoEn">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Salario__idUsuar__0F624AF8">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Salario" Type="Self.Salario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="Salario">
-              <PropertyRef Name="idUsuario" />
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suscripci__IdUsu__0E6E26BF">
+        <Association Name="FK__Suscripci__IdUsu__1EA48E88">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -302,30 +205,6 @@
             </Principal>
             <Dependent Role="Suscripcion">
               <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Suscripci__IdUsu__778AC167">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Suscripcion">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Salario_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Salario" Type="Self.Salario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Salario">
-              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -376,8 +255,8 @@
         </Function>
         <Function Name="ActualizarSalario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idSalario" Type="bigint" Mode="In" />
-          <Parameter Name="nuevoSalario" Type="decimal" Mode="In" />
-          <Parameter Name="nuevaDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Salario" Type="decimal" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -412,9 +291,9 @@
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="RegistrarSalario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idSalario" Type="bigint" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Salario" Type="decimal" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
         </Function>
         <EntityContainer Name="ProyectoPAModelStoreContainer">
           <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
@@ -427,88 +306,49 @@
           <EntitySet Name="Salario" EntityType="Self.Salario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Clase__IdUsuario__6EF57B66" Association="Self.FK__Clase__IdUsuario__6EF57B66">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Clase" EntitySet="Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__14270015" Association="Self.FK__ClaseEntr__IdCla__14270015">
+          <AssociationSet Name="FK__ClaseEntr__IdCla__25518C17" Association="Self.FK__ClaseEntr__IdCla__25518C17">
             <End Role="Clase" EntitySet="Clase" />
             <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__6FE99F9F" Association="Self.FK__ClaseEntr__IdCla__6FE99F9F">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__70DDC3D8" Association="Self.FK__ClaseEntr__IdCla__70DDC3D8">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdUsu__151B244E" Association="Self.FK__ClaseEntr__IdUsu__151B244E">
+          <AssociationSet Name="FK__ClaseEntr__IdUsu__245D67DE" Association="Self.FK__ClaseEntr__IdUsu__245D67DE">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
           </AssociationSet>
-          <AssociationSet Name="FK__Direccion__IdUsu__160F4887" Association="Self.FK__Direccion__IdUsu__160F4887">
+          <AssociationSet Name="FK__Direccion__IdUsu__1BC821DD" Association="Self.FK__Direccion__IdUsu__1BC821DD">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Direccion__IdUsu__71D1E811" Association="Self.FK__Direccion__IdUsu__71D1E811">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Estadisti__IdUsu__1332DBDC" Association="Self.FK__Estadisti__IdUsu__1332DBDC">
+          <AssociationSet Name="FK__Estadisti__IdUsu__18EBB532" Association="Self.FK__Estadisti__IdUsu__18EBB532">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Estadisticas" EntitySet="Estadisticas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Estadisti__IdUsu__72C60C4A" Association="Self.FK__Estadisti__IdUsu__72C60C4A">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Estadisticas" EntitySet="Estadisticas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Factura__IdSuscr__123EB7A3" Association="Self.FK__Factura__IdSuscr__123EB7A3">
+          <AssociationSet Name="FK__Factura__IdSuscr__2180FB33" Association="Self.FK__Factura__IdSuscr__2180FB33">
             <End Role="Suscripcion" EntitySet="Suscripcion" />
             <End Role="Factura" EntitySet="Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Factura__IdSuscr__73BA3083" Association="Self.FK__Factura__IdSuscr__73BA3083">
-            <End Role="Suscripcion" EntitySet="Suscripcion" />
-            <End Role="Factura" EntitySet="Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdCla__114A936A" Association="Self.FK__InscritoE__IdCla__114A936A">
+          <AssociationSet Name="FK__InscritoE__IdCla__282DF8C2" Association="Self.FK__InscritoE__IdCla__282DF8C2">
             <End Role="Clase" EntitySet="Clase" />
             <End Role="InscritoEn" EntitySet="InscritoEn" />
           </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdCla__74AE54BC" Association="Self.FK__InscritoE__IdCla__74AE54BC">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="InscritoEn" EntitySet="InscritoEn" />
-          </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdUsu__10566F31" Association="Self.FK__InscritoE__IdUsu__10566F31">
+          <AssociationSet Name="FK__InscritoE__IdUsu__29221CFB" Association="Self.FK__InscritoE__IdUsu__29221CFB">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="InscritoEn" EntitySet="InscritoEn" />
           </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdUsu__75A278F5" Association="Self.FK__InscritoE__IdUsu__75A278F5">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="InscritoEn" EntitySet="InscritoEn" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Salario__idUsuar__0F624AF8" Association="Self.FK__Salario__idUsuar__0F624AF8">
+          <AssociationSet Name="FK__Salario__IdUsuar__4F47C5E3" Association="Self.FK__Salario__IdUsuar__4F47C5E3">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Salario" EntitySet="Salario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Suscripci__IdUsu__0E6E26BF" Association="Self.FK__Suscripci__IdUsu__0E6E26BF">
+          <AssociationSet Name="FK__Suscripci__IdUsu__1EA48E88" Association="Self.FK__Suscripci__IdUsu__1EA48E88">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Suscripcion" EntitySet="Suscripcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Suscripci__IdUsu__778AC167" Association="Self.FK__Suscripci__IdUsu__778AC167">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Suscripcion" EntitySet="Suscripcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Salario_Usuario" Association="Self.FK_Salario_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Salario" EntitySet="Salario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -519,13 +359,8 @@
           <Property Name="IdClase" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Clase__IdUsuario__6EF57B66" FromRole="Clase" ToRole="Usuario" />
-          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK__ClaseEntr__IdCla__14270015" FromRole="Clase" ToRole="ClaseEntrenador" />
-          <NavigationProperty Name="ClaseEntrenador1" Relationship="Self.FK__ClaseEntr__IdCla__6FE99F9F" FromRole="Clase" ToRole="ClaseEntrenador" />
-          <NavigationProperty Name="ClaseEntrenador2" Relationship="Self.FK__ClaseEntr__IdCla__70DDC3D8" FromRole="Clase" ToRole="ClaseEntrenador" />
-          <NavigationProperty Name="InscritoEn" Relationship="Self.FK__InscritoE__IdCla__114A936A" FromRole="Clase" ToRole="InscritoEn" />
-          <NavigationProperty Name="InscritoEn1" Relationship="Self.FK__InscritoE__IdCla__74AE54BC" FromRole="Clase" ToRole="InscritoEn" />
+          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK__ClaseEntr__IdCla__25518C17" FromRole="Clase" ToRole="ClaseEntrenador" />
+          <NavigationProperty Name="InscritoEn" Relationship="Self.FK__InscritoE__IdCla__282DF8C2" FromRole="Clase" ToRole="InscritoEn" />
         </EntityType>
         <EntityType Name="ClaseEntrenador">
           <Key>
@@ -534,10 +369,8 @@
           <Property Name="IdClaseEntrenador" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
           <Property Name="IdClase" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Clase" Relationship="Self.FK__ClaseEntr__IdCla__14270015" FromRole="ClaseEntrenador" ToRole="Clase" />
-          <NavigationProperty Name="Clase1" Relationship="Self.FK__ClaseEntr__IdCla__6FE99F9F" FromRole="ClaseEntrenador" ToRole="Clase" />
-          <NavigationProperty Name="Clase2" Relationship="Self.FK__ClaseEntr__IdCla__70DDC3D8" FromRole="ClaseEntrenador" ToRole="Clase" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__ClaseEntr__IdUsu__151B244E" FromRole="ClaseEntrenador" ToRole="Usuario" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__ClaseEntr__IdCla__25518C17" FromRole="ClaseEntrenador" ToRole="Clase" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__ClaseEntr__IdUsu__245D67DE" FromRole="ClaseEntrenador" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -548,8 +381,7 @@
           <Property Name="CodPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="OtraSena" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Direccion__IdUsu__160F4887" FromRole="Direccion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Direccion__IdUsu__71D1E811" FromRole="Direccion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Direccion__IdUsu__1BC821DD" FromRole="Direccion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Estadisticas">
           <Key>
@@ -560,8 +392,7 @@
           <Property Name="Peso" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Estadisti__IdUsu__1332DBDC" FromRole="Estadisticas" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Estadisti__IdUsu__72C60C4A" FromRole="Estadisticas" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Estadisti__IdUsu__18EBB532" FromRole="Estadisticas" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -572,8 +403,7 @@
           <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdSuscripcion" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Suscripcion" Relationship="Self.FK__Factura__IdSuscr__123EB7A3" FromRole="Factura" ToRole="Suscripcion" />
-          <NavigationProperty Name="Suscripcion1" Relationship="Self.FK__Factura__IdSuscr__73BA3083" FromRole="Factura" ToRole="Suscripcion" />
+          <NavigationProperty Name="Suscripcion" Relationship="Self.FK__Factura__IdSuscr__2180FB33" FromRole="Factura" ToRole="Suscripcion" />
         </EntityType>
         <EntityType Name="InscritoEn">
           <Key>
@@ -582,10 +412,8 @@
           <Property Name="IdInscritoEn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdClase" Type="Int64" Nullable="false" />
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Clase" Relationship="Self.FK__InscritoE__IdCla__114A936A" FromRole="InscritoEn" ToRole="Clase" />
-          <NavigationProperty Name="Clase1" Relationship="Self.FK__InscritoE__IdCla__74AE54BC" FromRole="InscritoEn" ToRole="Clase" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__InscritoE__IdUsu__10566F31" FromRole="InscritoEn" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__InscritoE__IdUsu__75A278F5" FromRole="InscritoEn" ToRole="Usuario" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__InscritoE__IdCla__282DF8C2" FromRole="InscritoEn" ToRole="Clase" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__InscritoE__IdUsu__29221CFB" FromRole="InscritoEn" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -599,12 +427,11 @@
           <Key>
             <PropertyRef Name="idSalario" />
           </Key>
-          <Property Name="idSalario" Type="Int64" Nullable="false" />
-          <Property Name="salario1" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="idUsuario" Type="Int64" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Salario__idUsuar__0F624AF8" FromRole="Salario" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Salario_Usuario" FromRole="Salario" ToRole="Usuario" />
+          <Property Name="idSalario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="salario1" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Salario__IdUsuar__4F47C5E3" FromRole="Salario" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Suscripcion">
           <Key>
@@ -615,10 +442,8 @@
           <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdUsuario" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__IdSuscr__123EB7A3" FromRole="Suscripcion" ToRole="Factura" />
-          <NavigationProperty Name="Factura1" Relationship="Self.FK__Factura__IdSuscr__73BA3083" FromRole="Suscripcion" ToRole="Factura" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Suscripci__IdUsu__0E6E26BF" FromRole="Suscripcion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Suscripci__IdUsu__778AC167" FromRole="Suscripcion" ToRole="Usuario" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK__Factura__IdSuscr__2180FB33" FromRole="Suscripcion" ToRole="Factura" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Suscripci__IdUsu__1EA48E88" FromRole="Suscripcion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -634,33 +459,15 @@
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <Property Name="IdRol" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Clase" Relationship="Self.FK__Clase__IdUsuario__6EF57B66" FromRole="Usuario" ToRole="Clase" />
-          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK__ClaseEntr__IdUsu__151B244E" FromRole="Usuario" ToRole="ClaseEntrenador" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK__Direccion__IdUsu__160F4887" FromRole="Usuario" ToRole="Direccion" />
-          <NavigationProperty Name="Direccion1" Relationship="Self.FK__Direccion__IdUsu__71D1E811" FromRole="Usuario" ToRole="Direccion" />
-          <NavigationProperty Name="Estadisticas" Relationship="Self.FK__Estadisti__IdUsu__1332DBDC" FromRole="Usuario" ToRole="Estadisticas" />
-          <NavigationProperty Name="Estadisticas1" Relationship="Self.FK__Estadisti__IdUsu__72C60C4A" FromRole="Usuario" ToRole="Estadisticas" />
-          <NavigationProperty Name="InscritoEn" Relationship="Self.FK__InscritoE__IdUsu__10566F31" FromRole="Usuario" ToRole="InscritoEn" />
-          <NavigationProperty Name="InscritoEn1" Relationship="Self.FK__InscritoE__IdUsu__75A278F5" FromRole="Usuario" ToRole="InscritoEn" />
+          <NavigationProperty Name="ClaseEntrenador" Relationship="Self.FK__ClaseEntr__IdUsu__245D67DE" FromRole="Usuario" ToRole="ClaseEntrenador" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK__Direccion__IdUsu__1BC821DD" FromRole="Usuario" ToRole="Direccion" />
+          <NavigationProperty Name="Estadisticas" Relationship="Self.FK__Estadisti__IdUsu__18EBB532" FromRole="Usuario" ToRole="Estadisticas" />
+          <NavigationProperty Name="InscritoEn" Relationship="Self.FK__InscritoE__IdUsu__29221CFB" FromRole="Usuario" ToRole="InscritoEn" />
           <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
-          <NavigationProperty Name="Salario" Relationship="Self.FK__Salario__idUsuar__0F624AF8" FromRole="Usuario" ToRole="Salario" />
-          <NavigationProperty Name="Salario1" Relationship="Self.FK_Salario_Usuario" FromRole="Usuario" ToRole="Salario" />
-          <NavigationProperty Name="Suscripcion" Relationship="Self.FK__Suscripci__IdUsu__0E6E26BF" FromRole="Usuario" ToRole="Suscripcion" />
-          <NavigationProperty Name="Suscripcion1" Relationship="Self.FK__Suscripci__IdUsu__778AC167" FromRole="Usuario" ToRole="Suscripcion" />
+          <NavigationProperty Name="Salario" Relationship="Self.FK__Salario__IdUsuar__4F47C5E3" FromRole="Usuario" ToRole="Salario" />
+          <NavigationProperty Name="Suscripcion" Relationship="Self.FK__Suscripci__IdUsu__1EA48E88" FromRole="Usuario" ToRole="Suscripcion" />
         </EntityType>
-        <Association Name="FK__Clase__IdUsuario__6EF57B66">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Clase">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdCla__14270015">
+        <Association Name="FK__ClaseEntr__IdCla__25518C17">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,31 +479,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ClaseEntr__IdCla__6FE99F9F">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="ClaseEntrenador">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdCla__70DDC3D8">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="ClaseEntrenador">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__InscritoE__IdCla__114A936A">
+        <Association Name="FK__InscritoE__IdCla__282DF8C2">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
           <ReferentialConstraint>
@@ -708,19 +491,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__InscritoE__IdCla__74AE54BC">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="IdClase" />
-            </Principal>
-            <Dependent Role="InscritoEn">
-              <PropertyRef Name="IdClase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ClaseEntr__IdUsu__151B244E">
+        <Association Name="FK__ClaseEntr__IdUsu__245D67DE">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="ClaseEntrenador" Type="Self.ClaseEntrenador" Multiplicity="*" />
           <ReferentialConstraint>
@@ -732,7 +503,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Direccion__IdUsu__160F4887">
+        <Association Name="FK__Direccion__IdUsu__1BC821DD">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -744,19 +515,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Direccion__IdUsu__71D1E811">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Estadisti__IdUsu__1332DBDC">
+        <Association Name="FK__Estadisti__IdUsu__18EBB532">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -768,19 +527,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Estadisti__IdUsu__72C60C4A">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Estadisticas" Type="Self.Estadisticas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Estadisticas">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Factura__IdSuscr__123EB7A3">
+        <Association Name="FK__Factura__IdSuscr__2180FB33">
           <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="1" />
           <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -792,31 +539,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Factura__IdSuscr__73BA3083">
-          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="1" />
-          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suscripcion">
-              <PropertyRef Name="IdSuscripcion" />
-            </Principal>
-            <Dependent Role="Factura">
-              <PropertyRef Name="IdSuscripcion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__InscritoE__IdUsu__10566F31">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="InscritoEn">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__InscritoE__IdUsu__75A278F5">
+        <Association Name="FK__InscritoE__IdUsu__29221CFB">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="InscritoEn" Type="Self.InscritoEn" Multiplicity="*" />
           <ReferentialConstraint>
@@ -840,43 +563,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Salario__idUsuar__0F624AF8">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Salario" Type="Self.Salario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Salario">
-              <PropertyRef Name="idUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Salario_Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Salario" Type="Self.Salario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Salario">
-              <PropertyRef Name="idUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Suscripci__IdUsu__0E6E26BF">
+        <Association Name="FK__Salario__IdUsuar__4F47C5E3">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+          <End Role="Salario" Type="Self.Salario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IdUsuario" />
             </Principal>
-            <Dependent Role="Suscripcion">
+            <Dependent Role="Salario">
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Suscripci__IdUsu__778AC167">
+        <Association Name="FK__Suscripci__IdUsu__1EA48E88">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -899,63 +598,31 @@
           <EntitySet Name="Salario" EntityType="Self.Salario" />
           <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK__Clase__IdUsuario__6EF57B66" Association="Self.FK__Clase__IdUsuario__6EF57B66">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Clase" EntitySet="Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__14270015" Association="Self.FK__ClaseEntr__IdCla__14270015">
+          <AssociationSet Name="FK__ClaseEntr__IdCla__25518C17" Association="Self.FK__ClaseEntr__IdCla__25518C17">
             <End Role="Clase" EntitySet="Clase" />
             <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
           </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__6FE99F9F" Association="Self.FK__ClaseEntr__IdCla__6FE99F9F">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdCla__70DDC3D8" Association="Self.FK__ClaseEntr__IdCla__70DDC3D8">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdCla__114A936A" Association="Self.FK__InscritoE__IdCla__114A936A">
+          <AssociationSet Name="FK__InscritoE__IdCla__282DF8C2" Association="Self.FK__InscritoE__IdCla__282DF8C2">
             <End Role="Clase" EntitySet="Clase" />
             <End Role="InscritoEn" EntitySet="InscritoEn" />
           </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdCla__74AE54BC" Association="Self.FK__InscritoE__IdCla__74AE54BC">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="InscritoEn" EntitySet="InscritoEn" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ClaseEntr__IdUsu__151B244E" Association="Self.FK__ClaseEntr__IdUsu__151B244E">
+          <AssociationSet Name="FK__ClaseEntr__IdUsu__245D67DE" Association="Self.FK__ClaseEntr__IdUsu__245D67DE">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ClaseEntrenador" EntitySet="ClaseEntrenador" />
           </AssociationSet>
-          <AssociationSet Name="FK__Direccion__IdUsu__160F4887" Association="Self.FK__Direccion__IdUsu__160F4887">
+          <AssociationSet Name="FK__Direccion__IdUsu__1BC821DD" Association="Self.FK__Direccion__IdUsu__1BC821DD">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Direccion__IdUsu__71D1E811" Association="Self.FK__Direccion__IdUsu__71D1E811">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Estadisti__IdUsu__1332DBDC" Association="Self.FK__Estadisti__IdUsu__1332DBDC">
+          <AssociationSet Name="FK__Estadisti__IdUsu__18EBB532" Association="Self.FK__Estadisti__IdUsu__18EBB532">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Estadisticas" EntitySet="Estadisticas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Estadisti__IdUsu__72C60C4A" Association="Self.FK__Estadisti__IdUsu__72C60C4A">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Estadisticas" EntitySet="Estadisticas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Factura__IdSuscr__123EB7A3" Association="Self.FK__Factura__IdSuscr__123EB7A3">
+          <AssociationSet Name="FK__Factura__IdSuscr__2180FB33" Association="Self.FK__Factura__IdSuscr__2180FB33">
             <End Role="Suscripcion" EntitySet="Suscripcion" />
             <End Role="Factura" EntitySet="Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Factura__IdSuscr__73BA3083" Association="Self.FK__Factura__IdSuscr__73BA3083">
-            <End Role="Suscripcion" EntitySet="Suscripcion" />
-            <End Role="Factura" EntitySet="Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdUsu__10566F31" Association="Self.FK__InscritoE__IdUsu__10566F31">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="InscritoEn" EntitySet="InscritoEn" />
-          </AssociationSet>
-          <AssociationSet Name="FK__InscritoE__IdUsu__75A278F5" Association="Self.FK__InscritoE__IdUsu__75A278F5">
+          <AssociationSet Name="FK__InscritoE__IdUsu__29221CFB" Association="Self.FK__InscritoE__IdUsu__29221CFB">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="InscritoEn" EntitySet="InscritoEn" />
           </AssociationSet>
@@ -963,19 +630,11 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Salario__idUsuar__0F624AF8" Association="Self.FK__Salario__idUsuar__0F624AF8">
+          <AssociationSet Name="FK__Salario__IdUsuar__4F47C5E3" Association="Self.FK__Salario__IdUsuar__4F47C5E3">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Salario" EntitySet="Salario" />
           </AssociationSet>
-          <AssociationSet Name="FK_Salario_Usuario" Association="Self.FK_Salario_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Salario" EntitySet="Salario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Suscripci__IdUsu__0E6E26BF" Association="Self.FK__Suscripci__IdUsu__0E6E26BF">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Suscripcion" EntitySet="Suscripcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Suscripci__IdUsu__778AC167" Association="Self.FK__Suscripci__IdUsu__778AC167">
+          <AssociationSet Name="FK__Suscripci__IdUsu__1EA48E88" Association="Self.FK__Suscripci__IdUsu__1EA48E88">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Suscripcion" EntitySet="Suscripcion" />
           </AssociationSet>
@@ -1006,7 +665,7 @@
             <Parameter Name="IdEstadisticas" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarEstadoUsuario">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarRol">
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -1014,8 +673,8 @@
           </FunctionImport>
           <FunctionImport Name="ActualizarSalario">
             <Parameter Name="idSalario" Mode="In" Type="Int64" />
-            <Parameter Name="nuevoSalario" Mode="In" Type="Decimal" />
-            <Parameter Name="nuevaDescripcion" Mode="In" Type="String" />
+            <Parameter Name="Salario" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesion" ReturnType="Collection(ProyectoPAModel.IniciarSesion_Result)">
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
@@ -1047,12 +706,12 @@
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarRol">
-          <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarSalario">
-            <Parameter Name="idSalario" Mode="In" Type="Int64" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
             <Parameter Name="Salario" Mode="In" Type="Decimal" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
@@ -1078,7 +737,6 @@
                 <ScalarProperty Name="IdClase" ColumnName="IdClase" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1147,7 +805,7 @@
                 <ScalarProperty Name="idSalario" ColumnName="idSalario" />
                 <ScalarProperty Name="salario1" ColumnName="salario" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

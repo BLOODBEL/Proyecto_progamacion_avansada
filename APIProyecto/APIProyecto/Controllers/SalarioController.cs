@@ -48,23 +48,23 @@ namespace APIProyecto.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("RegistrarSalario")]
-        public string RegistrarSalario(SalarioEnt entidad)
-        {
-            try
-            {
-                using (var context = new ProyectoPAEntities())
-                {
-                    context.RegistrarSalario(entidad.IdUsuario, entidad.Salario, entidad.Descripcion);
-                    return "OK";
-                }
-            }
-            catch (Exception)
-            {
-                return string.Empty;
-            }
-        }
+        //[HttpPost]
+        //[Route("RegistrarSalario")]
+        //public string RegistrarSalario(SalarioEnt entidad)
+        //{
+        //    try
+        //    {
+        //        using (var context = new ProyectoPAEntities())
+        //        {
+        //            context.RegistrarSalario(entidad.IdSalario, entidad.Salario, entidad.Descripcion);
+        //            return "OK";
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return string.Empty;
+        //    }
+        //}
 
         [HttpPut]
         [Route("ActualizarSalario")]

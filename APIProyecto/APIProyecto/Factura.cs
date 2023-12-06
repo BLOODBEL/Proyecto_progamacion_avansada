@@ -21,6 +21,5 @@ namespace APIProyecto
         public long IdSuscripcion { get; set; }
     
         public virtual Suscripcion Suscripcion { get; set; }
-        public virtual Suscripcion Suscripcion1 { get; set; }
     }
 }
