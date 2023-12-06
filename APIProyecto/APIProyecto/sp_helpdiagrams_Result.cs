@@ -10,17 +10,13 @@
 namespace APIProyecto
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ClaseEntrenador
+    public partial class sp_helpdiagrams_Result
     {
-        public long IdClaseEntrenador { get; set; }
-        public long IdUsuario { get; set; }
-        public long IdClase { get; set; }
-    
-        public virtual Clase Clase { get; set; }
-        public virtual Clase Clase1 { get; set; }
-        public virtual Clase Clase2 { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
