@@ -5,16 +5,16 @@ using System.Web;
 
 namespace APIProyecto.Entities
 {
-    public class FacturaEnt
+    public class SuscripcionEnt
     {
 
-
-        public long IdFactura { get; set; }
         public long IdSuscripcion { get; set; }
-        public decimal Total { get; set; }
-        public decimal Precio { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Precio { get; set; }
+        public DateTime FechaInicio { get; set; }
+        public DateTime FechaFin { get; set; }
         public long IdUsuario { get; set; }
+
+
 
     }
 }

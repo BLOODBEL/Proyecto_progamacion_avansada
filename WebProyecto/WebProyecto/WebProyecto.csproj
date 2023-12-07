@@ -155,17 +155,20 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SalarioController.cs" />
+    <Compile Include="Controllers\SuscripcionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entities\ClaseEnt.cs" />
     <Compile Include="Entities\DireccionEnt.cs" />
     <Compile Include="Entities\FacturaEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\SalarioEnt.cs" />
+    <Compile Include="Entities\SuscrpcionEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DireccionModel.cs" />
+    <Compile Include="Models\SuscrpcionModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\RolModel.cs" />
     <Compile Include="Models\SalarioModel.cs" />
@@ -341,6 +344,7 @@
     <Content Include="Views\Salario\RegistrarSalario.cshtml" />
     <Content Include="Views\Salario\ActualizarSalario.cshtml" />
     <Content Include="Views\suscripcion\ConsultaFacturas.cshtml" />
+    <Content Include="Views\suscripcion\Suscripcion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

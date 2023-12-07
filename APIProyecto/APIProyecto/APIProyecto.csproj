@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SalarioController.cs" />
+    <Compile Include="Controllers\SuscripcionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Direccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -180,6 +181,7 @@
     <Compile Include="Entities\ClaseEnt.cs" />
     <Compile Include="Entities\DireccionEnt.cs" />
     <Compile Include="Entities\FacturaEnt.cs" />
+    <Compile Include="Entities\SuscripcionEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\SalarioEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
@@ -324,6 +326,7 @@
     <Folder Include="Data\" />
     <Folder Include="Views\Factura\" />
     <Folder Include="Views\Salario\" />
+    <Folder Include="Views\Suscripcion\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APIProyecto.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,25 +9,20 @@ namespace APIProyecto.Controllers
 {
     public class FacturaController : Controller
     {
-
         [HttpGet]
         [Route("ConsultaFacturas")]
-        public List<Factura> ConsultaFacturas()
+        public List<FacturaEnt> ConsultaFacturas(long q)
         {
-            try
+            using (var context = new ProyectoPAEntities())
             {
-                using (var context = new ProyectoPAEntities())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    return (from x in context.Factura
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                return new List<Factura>();
+                context.Configuration.LazyLoadingEnabled = false;
+                return (from x in context.Factura
+                        where x.IdUsuario == q
+                        select x).ToList();
             }
         }
+
+
         [HttpGet]
         [Route("ConsultaFactura")]
         public Factura ConsultaFactura(long q)

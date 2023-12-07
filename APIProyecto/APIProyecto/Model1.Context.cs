@@ -305,6 +305,27 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSalario", idSalarioParameter, salarioParameter, descripcionParameter);
         }
     
+        public virtual int RegistrarSuscripcion(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<decimal> precio, Nullable<long> idUsuario)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSuscripcion", fechaInicioParameter, fechaFinParameter, precioParameter, idUsuarioParameter);
+        }
+    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -406,6 +427,31 @@ namespace APIProyecto
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int ActualizarSuscripcion(Nullable<long> idSuscripcion, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<decimal> precio, Nullable<long> idUsuario)
+        {
+            var idSuscripcionParameter = idSuscripcion.HasValue ?
+                new ObjectParameter("IdSuscripcion", idSuscripcion) :
+                new ObjectParameter("IdSuscripcion", typeof(long));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarSuscripcion", idSuscripcionParameter, fechaInicioParameter, fechaFinParameter, precioParameter, idUsuarioParameter);
         }
     }
 }

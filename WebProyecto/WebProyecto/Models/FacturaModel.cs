@@ -14,9 +14,6 @@ namespace WebProyecto.Models
         public string rutaServidor = ConfigurationManager.AppSettings["RutaApi"];
 
 
-
-       
-
         public List<FacturaEnt> ConsultaFacturas()
         {
             using (var client = new HttpClient())
@@ -27,7 +24,28 @@ namespace WebProyecto.Models
             }
         }
 
-       
+
+        public string RegistrarFactura(FacturaEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "RegistrarFactura";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+
+        public string ActualizarFacturas(FacturaEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarFacturas";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
 
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clase">
           <Key>
             <PropertyRef Name="IdClase" />
@@ -391,6 +391,13 @@
           <Parameter Name="nuevoSalario" Type="decimal" Mode="In" />
           <Parameter Name="nuevaDescripcion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ActualizarSuscripcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSuscripcion" Type="bigint" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -428,6 +435,12 @@
           <Parameter Name="idSalario" Type="bigint" Mode="In" />
           <Parameter Name="Salario" Type="decimal" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarSuscripcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -552,8 +565,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1064,7 +1076,7 @@
             <Parameter Name="IdEstadisticas" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarEstadoUsuario">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarRol">
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -1105,12 +1117,18 @@
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarRol">
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarSalario">
             <Parameter Name="idSalario" Mode="In" Type="Int64" />
             <Parameter Name="Salario" Mode="In" Type="Decimal" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarSuscripcion">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1142,6 +1160,13 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="ActualizarSuscripcion">
+            <Parameter Name="IdSuscripcion" Mode="In" Type="Int64" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
           <Property Type="Int64" Name="IdUsuario" Nullable="false" />
@@ -1316,6 +1341,7 @@
           <FunctionImportMapping FunctionImportName="RegistrarEstadistica" FunctionName="ProyectoPAModel.Store.RegistrarEstadistica" />
           <FunctionImportMapping FunctionImportName="RegistrarRol" FunctionName="ProyectoPAModel.Store.RegistrarRol" />
           <FunctionImportMapping FunctionImportName="RegistrarSalario" FunctionName="ProyectoPAModel.Store.RegistrarSalario" />
+          <FunctionImportMapping FunctionImportName="RegistrarSuscripcion" FunctionName="ProyectoPAModel.Store.RegistrarSuscripcion" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProyectoPAModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProyectoPAModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProyectoPAModel.Store.sp_dropdiagram" />
@@ -1340,6 +1366,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProyectoPAModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProyectoPAModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="ActualizarSuscripcion" FunctionName="ProyectoPAModel.Store.ActualizarSuscripcion" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
