@@ -75,7 +75,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdDireccion);
+                    context.ActualizarDireccion(entidad.Calle, entidad.CodPostal, entidad.OtraSena, entidad.IdUsuario, entidad.IdDireccion);
                     return "OK";
                 }
             }

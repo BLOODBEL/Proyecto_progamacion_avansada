@@ -152,56 +152,56 @@ namespace WebProyecto.Controllers
 
         /* CLASES */
 
-[HttpGet]
-public ActionResult RegistrarClase()
-{
-    return View();
-}
+        [HttpGet]
+        public ActionResult RegistrarClase()
+        {
+            return View();
+        }
 
-[HttpPost]
-public ActionResult RegistrarClase(ClaseEnt entidad)
-{
-    string respuesta = claseUsuario.RegistrarClase(entidad);
+        [HttpPost]
+        public ActionResult RegistrarClase(ClaseEnt entidad)
+        {
+            string respuesta = claseUsuario.RegistrarClase(entidad);
 
-    if (respuesta == "OK")
-    {
-        return RedirectToAction("VerClases", "Usuario");
-    }
-    else
-    {
-        ViewBag.MensajeUsuario = "No se ha podido registrar la información";
-        return View();
-    }
-}
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("VerClases", "Usuario");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido registrar la información";
+                return View();
+            }
+        }
 
-[HttpGet]
-public ActionResult VerClases()
-{
-    var datos = claseUsuario.VerClases();
-    return View(datos);
-}
+        [HttpGet]
+        public ActionResult VerClases()
+        {
+            var datos = claseUsuario.VerClases();
+            return View(datos);
+        }
 
-[HttpGet]
-public ActionResult ActualizarClase(long q)
-{
-    var datos = claseUsuario.VerClase(q);
-    return View(datos);
-}
+        [HttpGet]
+        public ActionResult ActualizarClase(long q)
+        {
+            var datos = claseUsuario.VerClase(q);
+            return View(datos);
+        }
 
-[HttpPost]
-public ActionResult ActualizarClase(ClaseEnt entidad)
-{
-    string respuesta = claseUsuario.ActualizarClase(entidad);
+        [HttpPost]
+        public ActionResult ActualizarClase(ClaseEnt entidad)
+        {
+            string respuesta = claseUsuario.ActualizarClase(entidad);
 
-    if (respuesta == "OK")
-    {
-        return RedirectToAction("VerClases", "Usuario");
-    }
-    else
-    {
-        ViewBag.MensajeUsuario = "No se ha podido actualizar la clase";
-        return View();
-    }
-}
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("VerClases", "Usuario");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido actualizar la clase";
+                return View();
+            }
+        }
     }
 }

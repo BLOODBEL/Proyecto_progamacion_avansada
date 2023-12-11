@@ -140,7 +140,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha,entidad.IdEstadisticas);
+                    context.ActualizarEstadistica(entidad.Altura, entidad.Peso, entidad.Fecha, entidad.IdUsuario, entidad.IdEstadisticas);
                     return "OK";
                 }
             }

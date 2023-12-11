@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Web;
 using WebProyecto.Entities;
 using System.Web.Mvc;
+using System;
 
 namespace WebProyecto.Models
 {
@@ -122,46 +123,47 @@ namespace WebProyecto.Models
         }
         /* CLASES */
 
-public string RegistrarClase(ClaseEnt entidad)
-{
-    using (var client = new HttpClient())
-    {
-        var urlApi = rutaServidor + "RegistrarClase";
-        var jsonData = JsonContent.Create(entidad);
-        var res = client.PostAsync(urlApi, jsonData).Result;
-        return res.Content.ReadFromJsonAsync<string>().Result;
-    }
-}
-public List<ClaseEnt> VerClases()
-{
-    using (var client = new HttpClient())
-    {
-        var urlApi = rutaServidor + "VerClases";
-        var res = client.GetAsync(urlApi).Result;
-        return res.Content.ReadFromJsonAsync<List<ClaseEnt>>().Result;
-    }
-}
+        public string RegistrarClase(ClaseEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "RegistrarClase";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
 
-public ClaseEnt VerClase(long q)
-{
-    using (var client = new HttpClient())
-    {
-        var urlApi = rutaServidor + "VerClase?q=" + q;
-        var res = client.GetAsync(urlApi).Result;
-        return res.Content.ReadFromJsonAsync<ClaseEnt>().Result;
-    }
-}
+        public List<ClaseEnt> VerClases()
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "VerClases";
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<List<ClaseEnt>>().Result;
+            }
+        }
 
-public string ActualizarClase(ClaseEnt entidad)
-{
-    using (var client = new HttpClient())
-    {
-        var urlApi = rutaServidor + "ActualizarClase";
-        var jsonData = JsonContent.Create(entidad);
-        var res = client.PutAsync(urlApi, jsonData).Result;
-        return res.Content.ReadFromJsonAsync<string>().Result;
-    }
-}
+        public ClaseEnt VerClase(long q)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "VerClase?q=" + q;
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<ClaseEnt>().Result;
+            }
+        }
+
+        public string ActualizarClase(ClaseEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarClase";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
 
     }
 }

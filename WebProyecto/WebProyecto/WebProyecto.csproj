@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
+    <Compile Include="Controllers\InscritoEnController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RolController.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Controllers\SuscripcionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entities\ClaseEnt.cs" />
+    <Compile Include="Entities\InscritoEnt.cs" />
     <Compile Include="Entities\DireccionEnt.cs" />
     <Compile Include="Entities\FacturaEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
@@ -168,6 +170,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DireccionModel.cs" />
+    <Compile Include="Models\InscritoEnModel.cs" />
     <Compile Include="Models\SuscrpcionModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\RolModel.cs" />
@@ -345,6 +348,7 @@
     <Content Include="Views\Salario\ActualizarSalario.cshtml" />
     <Content Include="Views\suscripcion\ConsultaFacturas.cshtml" />
     <Content Include="Views\suscripcion\Suscripcion.cshtml" />
+    <Content Include="Views\InscritoEn\Inscripciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

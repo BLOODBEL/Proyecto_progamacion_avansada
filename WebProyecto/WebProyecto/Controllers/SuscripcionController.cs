@@ -10,9 +10,7 @@ namespace WebProyecto.Controllers
 {
     public class SuscripcionController : Controller
     {
-
         SuscripcionModel claseSuscripcion = new SuscripcionModel();
-
 
         [HttpGet]
         public ActionResult RegistrarSuscripcion()
