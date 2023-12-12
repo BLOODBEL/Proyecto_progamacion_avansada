@@ -29,6 +29,7 @@ namespace WebProyecto.Controllers
             {
                 Session["IdUsuario"] = respuesta.IdUsuario;
                 Session["NombreUsuario"] = respuesta.Nombre;
+                Session["DescripcionRol"] = respuesta.DescripcionRol;
                 return RedirectToAction("Index", "Login");
             }
             else
