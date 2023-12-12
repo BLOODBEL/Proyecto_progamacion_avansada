@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProyectoPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clase">
           <Key>
             <PropertyRef Name="IdClase" />
@@ -309,18 +309,9 @@
           <Parameter Name="Salario" Type="decimal" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="ActualizarSuscripcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdSuscripcion" Type="bigint" Mode="In" />
-          <Parameter Name="descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="Cantidad" Type="int" Mode="In" />
-          <Parameter Name="Precio" Type="decimal" Mode="In" />
-        </Function>
         <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="RecuperarCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="RegistrarClase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -352,12 +343,6 @@
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Salario" Type="decimal" Mode="In" />
           <Parameter Name="IdUsuario" Type="bigint" Mode="In" />
-        </Function>
-        <Function Name="RegistrarSuscripcion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="Cantidad" Type="int" Mode="In" />
-          <Parameter Name="Precio" Type="decimal" Mode="In" />
-          <Parameter Name="IdSuscripcion" Type="bigint" Mode="In" />
         </Function>
         <EntityContainer Name="ProyectoPAModelStoreContainer">
           <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
@@ -425,7 +410,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -813,7 +799,7 @@
             <Parameter Name="IdEstadisticas" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarEstadoUsuario">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ActualizarRol">
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -852,27 +838,12 @@
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarRol">
-          <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarSalario">
             <Parameter Name="descripcion" Mode="In" Type="String" />
             <Parameter Name="Salario" Mode="In" Type="Decimal" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int64" />
-          </FunctionImport>
-          <FunctionImport Name="RecuperarCuenta" ReturnType="Collection(ProyectoPAModel.RecuperarCuenta_Result)">
-          <Parameter Name="Identificacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ActualizarSuscripcion">
-            <Parameter Name="IdSuscripcion" Mode="In" Type="Int64" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="Precio" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="RegistrarSuscripcion">
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="Precio" Mode="In" Type="Decimal" />
-            <Parameter Name="IdSuscripcion" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesion_Result">
@@ -883,11 +854,6 @@
           <Property Type="String" Name="Contrasenna" Nullable="false" MaxLength="35" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="DescripcionRol" Nullable="false" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="RecuperarCuenta_Result">
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Contrasenna" Nullable="false" MaxLength="35" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1045,17 +1011,6 @@
           <FunctionImportMapping FunctionImportName="RegistrarEstadistica" FunctionName="ProyectoPAModel.Store.RegistrarEstadistica" />
           <FunctionImportMapping FunctionImportName="RegistrarRol" FunctionName="ProyectoPAModel.Store.RegistrarRol" />
           <FunctionImportMapping FunctionImportName="RegistrarSalario" FunctionName="ProyectoPAModel.Store.RegistrarSalario" />
-          <FunctionImportMapping FunctionImportName="RecuperarCuenta" FunctionName="ProyectoPAModel.Store.RecuperarCuenta">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ProyectoPAModel.RecuperarCuenta_Result">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ActualizarSuscripcion" FunctionName="ProyectoPAModel.Store.ActualizarSuscripcion" />
-          <FunctionImportMapping FunctionImportName="RegistrarSuscripcion" FunctionName="ProyectoPAModel.Store.RegistrarSuscripcion" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

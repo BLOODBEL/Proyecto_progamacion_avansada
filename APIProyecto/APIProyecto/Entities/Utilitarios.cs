@@ -4,7 +4,8 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
-
+using System.Net.Mail;
+using System.Configuration;
 namespace APIProyecto.Entities
 {
     public class Utilitarios
