@@ -14,9 +14,19 @@ namespace APIProyecto
     
     public partial class Maestro
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Maestro()
+        {
+            this.Detalle = new HashSet<Detalle>();
+        }
+    
         public long IdMaestro { get; set; }
         public long IdUsuario { get; set; }
         public System.DateTime FechaCompra { get; set; }
         public decimal TotalCompra { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle> Detalle { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

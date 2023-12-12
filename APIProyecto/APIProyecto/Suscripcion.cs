@@ -17,21 +17,18 @@ namespace APIProyecto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Suscripcion()
         {
+            this.Detalle = new HashSet<Detalle>();
             this.Factura = new HashSet<Factura>();
-            this.Factura1 = new HashSet<Factura>();
         }
     
         public long IdSuscripcion { get; set; }
-        public System.DateTime FechaInicio { get; set; }
-        public System.DateTime FechaFin { get; set; }
+        public string descripcion { get; set; }
+        public int Cantidad { get; set; }
         public decimal Precio { get; set; }
-        public long IdUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Factura { get; set; }
+        public virtual ICollection<Detalle> Detalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Factura1 { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
+        public virtual ICollection<Factura> Factura { get; set; }
     }
 }

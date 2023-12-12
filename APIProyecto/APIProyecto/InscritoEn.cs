@@ -19,8 +19,6 @@ namespace APIProyecto
         public long IdUsuario { get; set; }
     
         public virtual Clase Clase { get; set; }
-        public virtual Clase Clase1 { get; set; }
         public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
     }
 }

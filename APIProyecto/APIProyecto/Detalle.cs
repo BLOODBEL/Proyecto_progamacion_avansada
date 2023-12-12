@@ -15,8 +15,13 @@ namespace APIProyecto
     public partial class Detalle
     {
         public long IdDetalle { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal TotalCon13Porc { get; set; }
+        public long IdMaestro { get; set; }
         public long IdSuscripcion { get; set; }
+        public decimal PrecioPagado { get; set; }
+        public int CantidadPagado { get; set; }
+        public decimal ImpuestoPagado { get; set; }
+    
+        public virtual Maestro Maestro { get; set; }
+        public virtual Suscripcion Suscripcion { get; set; }
     }
 }

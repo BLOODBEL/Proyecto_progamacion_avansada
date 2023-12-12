@@ -9,9 +9,8 @@ namespace WebProyecto.Entities
     {
 
         public long IdSuscripcion { get; set; }
+        public int Cantidad { get; set; }
         public string descripcion { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
         public decimal Precio { get; set; }
 
 

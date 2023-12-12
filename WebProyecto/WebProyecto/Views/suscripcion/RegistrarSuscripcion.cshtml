@@ -23,7 +23,7 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            
+
 
             @if (ViewBag.MensajeUsuario != null)
             {
@@ -44,12 +44,11 @@
                    })
                 </div>
 
+              
                 <div class="form-group">
-                    @Html.TextBoxFor(m => m.FechaInicio, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha Inicio", @type = "date" })
+                    @Html.TextBoxFor(m => m.Ca, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "text" })
                 </div>
-                <div class="form-group">
-                    @Html.TextBoxFor(m => m.FechaFin, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha Fin", @type = "date" })
-                </div>
+
                 <div class="form-group">
                     @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "text" })
                 </div>

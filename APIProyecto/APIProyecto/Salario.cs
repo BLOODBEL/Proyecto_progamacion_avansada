@@ -15,11 +15,10 @@ namespace APIProyecto
     public partial class Salario
     {
         public long idSalario { get; set; }
-        public Nullable<decimal> salario1 { get; set; }
+        public decimal salario1 { get; set; }
         public string descripcion { get; set; }
-        public Nullable<long> idUsuario { get; set; }
+        public long IdUsuario { get; set; }
     
         public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
     }
 }

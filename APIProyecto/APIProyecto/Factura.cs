@@ -15,12 +15,12 @@ namespace APIProyecto
     public partial class Factura
     {
         public long IdFactura { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public decimal Total { get; set; }
-        public decimal Precio { get; set; }
+        public long IdUsuario { get; set; }
         public long IdSuscripcion { get; set; }
+        public int Cantidad { get; set; }
+        public System.DateTime FechaFactura { get; set; }
     
         public virtual Suscripcion Suscripcion { get; set; }
-        public virtual Suscripcion Suscripcion1 { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
