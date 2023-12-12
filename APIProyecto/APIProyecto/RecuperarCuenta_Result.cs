@@ -10,17 +10,11 @@
 namespace APIProyecto
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ClaseEntrenador
+    public partial class RecuperarCuenta_Result
     {
-        public long IdClaseEntrenador { get; set; }
-        public long IdUsuario { get; set; }
-        public long IdClase { get; set; }
-    
-        public virtual Clase Clase { get; set; }
-        public virtual Clase Clase1 { get; set; }
-        public virtual Clase Clase2 { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public string nombre { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Contrasenna { get; set; }
     }
 }

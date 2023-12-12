@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "contraseña";
+    ViewBag.Title = "RecuperarCuenta";
     Layout = "~/Views/Shared/_layout_Login.cshtml";
 }
 <section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -100px;">
@@ -21,7 +21,7 @@
 <section class="section d-flex align-items-center justify-content-center">
 </section>
 
-
+<section class="section element-animate">
 
 
     @if (ViewBag.MensajeUsuario != null)
@@ -46,9 +46,9 @@
 
 
             <br />
-            ¿No tienes una cuenta? <a href="@Url.Action("Registrarse", "Login")" class="btn btn-warning btn-block py-3">Registrarse</a>
+            ¿No tienes una cuenta? <a href="@Url.Action("IniciarSesion", "Login")" class="btn btn-warning btn-block py-3">Registrarse</a>
 
 
         </div>
     }
-
+</section>
