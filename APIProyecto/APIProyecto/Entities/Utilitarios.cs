@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Net.Mail;
+using System.Configuration;
 namespace APIProyecto.Entities
 {
     public class Utilitarios
     {
 
-        public void EnviarCorreo(string Destino, string Asunto, string Contenido)
+        public void EnviarCorreo(string destino, string asunto, string contenido)
         {
-            //do submit
-            MailMessage emailMessage = new MailMessage();
-            emailMessage.From = new MailAddress("dgarcia70246@ufide.ac.cr");
-            emailMessage.To.Add(new MailAddress(Destino));
-            emailMessage.Subject = Asunto;
-            emailMessage.Body = Contenido;
-            emailMessage.Priority = MailPriority.Normal;
-            SmtpClient MailClient = new SmtpClient("smtp.office365.com", 587);
-            MailClient.Credentials = new System.Net.NetworkCredential("dgarcia70246@ufide.ac.cr", "1857Klms+");
-            MailClient.Send(emailMessage);
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(ConfigurationManager.AppSettings["cuentaCorreo"]);
+            message.To.Add(new MailAddress(destino));
+            message.Subject = asunto;
+            message.Body = contenido;
+            message.Priority = MailPriority.Normal;
+            message.IsBodyHtml = true;
 
+            SmtpClient client = new SmtpClient("smtp.office365.com", 587);
+            client.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["cuentaCorreo"], ConfigurationManager.AppSettings["claveCorreo"]);
+            client.EnableSsl = true;
+            client.Send(message);
         }
 
 
