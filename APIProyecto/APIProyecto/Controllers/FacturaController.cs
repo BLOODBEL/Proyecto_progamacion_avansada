@@ -26,6 +26,11 @@ namespace APIProyecto.Controllers
                     context.Factura.Add(factura);
                     context.SaveChanges();
                 }
+                else
+                {
+                    datos.Cantidad = factura.Cantidad;
+                    context.SaveChanges();
+                }
                 return "OK";
             }
         }
@@ -45,12 +50,13 @@ namespace APIProyecto.Controllers
                             x.IdFactura,
                             x.IdUsuario,
                             x.IdSuscripcion,
+                            x.Cantidad,
                             x.FechaFactura,
                             y.descripcion,
                             y.Precio,
-                            SubTotal = y.Precio,
-                            Impuesto = (y.Precio * 0.13M),
-                            Total = (y.Precio * 0.13M)
+                            SubTotal = (y.Precio * x.Cantidad),
+                            Impuesto = (y.Precio * x.Cantidad) * 0.13M,
+                            Total = (y.Precio * x.Cantidad) + (y.Precio * x.Cantidad) * 0.13M
                         }).ToList();
             }
         }

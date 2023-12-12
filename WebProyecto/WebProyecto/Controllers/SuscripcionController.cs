@@ -23,9 +23,9 @@ namespace WebProyecto.Controllers
         [HttpPost]
         public ActionResult RegistrarSuscripcion(SuscripcionEnt entidad)
         {
-            string IdSuscripcion = claseSuscripcion.RegistrarSuscripcion(entidad);
+            String respuesta = claseSuscripcion.RegistrarSuscripcion(entidad);
 
-            if (IdSuscripcion == "OK")
+            if (respuesta == "OK")
             {
                 return RedirectToAction("ConsultaFacturas","suscripcion");
             }
@@ -47,31 +47,28 @@ namespace WebProyecto.Controllers
 
 
 
-        //[HttpGet]
-        //public ActionResult ConsultaSuscripcion(long q)
-        //{
-        //    var datos = claseSuscripcion.ConsultaSuscripcion(q);
-        //    return View(datos);
-        //}
+        [HttpGet]
+        public ActionResult ActualisarSuscripcion(long q)
+        {
+            var datos = claseSuscripcion.ConsultaSuscripcion(q);
+            return View(datos);
+        }
 
-        //[HttpPost]
-        //public ActionResult ConsultaSuscripcion(SuscripcionEnt entidad)
-        //{
-        //    string respuesta = claseSuscripcion.ConsultaSuscripcion(entidad);
+        [HttpPost]
+        public ActionResult ActualisarSuscripcion(SuscripcionEnt entidad)
+        {
+            string respuesta = claseSuscripcion.ActualisarSuscripcion(entidad);
 
-        //    if (respuesta == "OK")
-        //    {
-        //        return RedirectToAction("ConsultaFacturas", "suscripcion");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.MensajeUsuario = "No se ha podido actualizar la suscripcion";
-        //        return View();
-        //    }
-        //}
-
-
-
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("ConsultaSuscripciones", "suscripcion");
+    }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido actualizar la información del producto";
+                return View();
+}
+        }
 
     }
 }

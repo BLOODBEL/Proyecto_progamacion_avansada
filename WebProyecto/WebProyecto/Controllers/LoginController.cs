@@ -80,5 +80,29 @@ namespace WebProyecto.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        [HttpGet]
+        public ActionResult RecuperarCuenta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RecuperarCuenta(UsuarioEnt entidad)
+        {
+            string respuesta = claseUsuario.RecuperarCuenta(entidad);
+
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("IniciarSesion", "Login");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido recuperar su información";
+                return View();
+            }
+        }
+
     }
 }
+
+    

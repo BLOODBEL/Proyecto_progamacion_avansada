@@ -18,14 +18,14 @@ namespace WebProyecto.Models
 
 
 
-        public string RegistrarSuscripcion(SuscripcionEnt entidad)
+        public String RegistrarSuscripcion(SuscripcionEnt entidad)
         {
             using (var client = new HttpClient())
             {
                 var urlApi = rutaServidor + "RegistrarSuscripcion";
                 var jsonData = JsonContent.Create(entidad);
                 var res = client.PostAsync(urlApi, jsonData).Result;
-                return res.Content.ReadFromJsonAsync<string>().Result;
+                return res.Content.ReadFromJsonAsync<String>().Result;
             }
         }
 

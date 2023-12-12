@@ -7,8 +7,12 @@ using System.Web.Http;
 
 namespace APIProyecto.Controllers
 {
+
     public class LoginController : ApiController
     {
+
+        Utilitarios util = new Utilitarios();
+
 
         [HttpPost]
         [Route("Registrarse")]
@@ -37,12 +41,7 @@ namespace APIProyecto.Controllers
             {
                 using (var context = new ProyectoPAEntities())
                 {
-                    //return (from x in context.TUsuario 
-                    //             where x.Correo == entidad.Correo
-                    //             && x.Contrasenna == entidad.Contrasenna
-                    //             && x.Estado == true
-                    //             select x).FirstOrDefault();
-
+             
                     return context.IniciarSesion(entidad.CorreoElectronico, entidad.Contrasenna).FirstOrDefault();
                 }
             }
@@ -52,46 +51,41 @@ namespace APIProyecto.Controllers
             }
         }
 
-        [HttpPost]
+
+        [HttpGet]
         [Route("RecuperarCuenta")]
-        public string RecuperarCuenta(UsuarioEnt entidad)
+        public string RecuperarCuenta(string Identificacion)
         {
             try
             {
                 using (var context = new ProyectoPAEntities())
                 {
-
-                    var datos = context.RecuperarCuenta(entidad.Identificacion).FirstOrDefault();
-
+                    var datos = context.RecuperarCuenta(Identificacion).FirstOrDefault();
 
                     if (datos != null)
                     {
+                        string rutaArchivo = AppDomain.CurrentDomain.BaseDirectory + "Templates\\Contrasenna.html";
+                        string html = File.ReadAllText(rutaArchivo);
 
-                        string contenido = "Estimado(a)" + datos.nombre + ".Contraseña " + datos.Contrasenna;
+                        html = html.Replace("@@Nombre", datos.nombre);
+                        html = html.Replace("@@Contrasenna", datos.Contrasenna);
 
-
-
-                        util.EnviarCorreo(datos.CorreoElectronico, "Contraseña de acceso ", contenido);
-
+                        util.EnviarCorreo(datos.CorreoElectronico, "Contraseña de Acceso", html);
                         return "OK";
-
                     }
                     else
                     {
                         return string.Empty;
-
                     }
-
                 }
             }
             catch (Exception)
             {
                 return string.Empty;
             }
-
         }
 
 
-
-        }
     }
+}
+    

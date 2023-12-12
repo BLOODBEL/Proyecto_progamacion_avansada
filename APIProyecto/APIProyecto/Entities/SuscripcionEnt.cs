@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebProyecto.Entities
+namespace APIProyecto.Entities
 {
     public class SuscripcionEnt
     {
@@ -12,8 +13,8 @@ namespace WebProyecto.Entities
         public string descripcion { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
+     
+
       
-
-
     }
 }

@@ -78,6 +78,16 @@ namespace WebProyecto.Models
             }
         }
 
+        public string RecuperarCuenta(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "RecuperarCuenta";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
         /* ESTADISTICAS */
 
         public string RegistrarEstadistica(UsuarioEnt entidad)

@@ -10,17 +10,11 @@
 namespace APIProyecto
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Factura
+    public partial class RecuperarCuenta_Result
     {
-        public long IdFactura { get; set; }
-        public long IdUsuario { get; set; }
-        public long IdSuscripcion { get; set; }
-        public int Cantidad { get; set; }
-        public System.DateTime FechaFactura { get; set; }
-    
-        public virtual Suscripcion Suscripcion { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public string nombre { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Contrasenna { get; set; }
     }
 }

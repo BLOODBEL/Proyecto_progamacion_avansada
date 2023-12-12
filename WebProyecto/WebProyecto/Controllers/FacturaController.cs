@@ -23,7 +23,7 @@ namespace WebProyecto.Controllers
             entidad.IdSuscripcion = IdSuscripcion;
 
             claseFactura.RegistrarFactura(entidad);
-            entidad.FechaCarrito = DateTime.Now;
+            entidad.FechaFactura = DateTime.Now;
 
             claseFactura.RegistrarFactura(entidad);
 
