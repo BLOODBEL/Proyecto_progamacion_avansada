@@ -51,5 +51,47 @@ namespace APIProyecto.Controllers
                 return null;
             }
         }
+
+        [HttpPost]
+        [Route("RecuperarCuenta")]
+        public string RecuperarCuenta(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new ProyectoPAEntities())
+                {
+
+                    var datos = context.RecuperarCuenta(entidad.Identificacion).FirstOrDefault();
+
+
+                    if (datos != null)
+                    {
+
+                        string contenido = "Estimado(a)" + datos.nombre + ".Contraseña " + datos.Contrasenna;
+
+
+
+                        util.EnviarCorreo(datos.CorreoElectronico, "Contraseña de acceso ", contenido);
+
+                        return "OK";
+
+                    }
+                    else
+                    {
+                        return string.Empty;
+
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+
+        }
+
+
+
+        }
     }
-}

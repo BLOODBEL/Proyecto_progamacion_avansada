@@ -19,22 +19,33 @@
 </section>
 
 <section class="section element-animate">
-    <div class="container-fluid">
-        <div class="col-md-12 text-center heading-wrap">
-            <div class="container">
-                <div class="form-wrap overlap primary element-animate">
-                    <h2 class="h2">Ingresa los datos solicitados</h2>
-                    <form action="#">
-                        <div class="form-group">
-                            <input type="number" class="form-control" placeholder="Cedula">
-                        </div>
 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-warning btn-block py-3" value="Aceptar">
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+    @if (ViewBag.MensajeUsuario != null)
+    {
+        <div class="alert alert-danger" role="alert" style="text-align:center">
+            @ViewBag.MensajeUsuario
         </div>
-    </div>
+    }
+
+
+    @using (Html.BeginForm("contraseña", "Login", FormMethod.Post, new { @class = "pt-3" }))
+    {
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-lg", @placeholder = "Identificacion", @type = "text" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-warning btn-block py-3" value="Recuperar Cuenta">
+        </div>
+
+        <div class="col-md-12 text-center heading-wrap">
+
+
+            <br />
+            ¿No tienes una cuenta? <a href="@Url.Action("Registrarse", "Login")" class="btn btn-warning btn-block py-3">Registrarse</a>
+
+
+        </div>
+    }
 </section>
