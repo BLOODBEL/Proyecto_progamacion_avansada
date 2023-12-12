@@ -12,26 +12,21 @@ namespace APIProyecto
     using System;
     using System.Collections.Generic;
     
-    public partial class Suscripcion
+    public partial class Maestro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Suscripcion()
+        public Maestro()
         {
             this.Detalle = new HashSet<Detalle>();
-            this.Factura = new HashSet<Factura>();
         }
     
-        public long IdSuscripcion { get; set; }
-        public string descripcion { get; set; }
-        public System.DateTime FechaInicio { get; set; }
-        public System.DateTime FechaFin { get; set; }
-        public decimal Precio { get; set; }
+        public long IdMaestro { get; set; }
         public long IdUsuario { get; set; }
+        public System.DateTime FechaCompra { get; set; }
+        public decimal TotalCompra { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Factura { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

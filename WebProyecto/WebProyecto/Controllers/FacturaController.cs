@@ -14,55 +14,57 @@ namespace WebProyecto.Controllers
         FacturaModel claseFactura = new FacturaModel();
 
 
-     
+
         [HttpGet]
-        public ActionResult RegistrarFactura()
+        public ActionResult RegistrarFactura(long IdSuscripcion)
         {
-            return View();
-        }
+            var entidad = new FacturaEnt();
+            entidad.IdUsuario = long.Parse(Session["IdUsuario"].ToString());
+            entidad.IdSuscripcion = IdSuscripcion;
 
-        [HttpPost]
-        public ActionResult RegistrarFactura(FacturaEnt entidad)
-        {
-            string respuesta = claseFactura.ConsultaFacturas(entidad);
+            claseFactura.RegistrarFactura(entidad);
+            entidad.FechaCarrito = DateTime.Now;
 
-            if (respuesta == "OK")
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                ViewBag.MensajeUsuario = "No se ha podido registrar su información";
-                return View();
-            }
+            claseFactura.RegistrarFactura(entidad);
+
+            var datos = claseFactura.ConsultarFact(long.Parse(Session["IdUsuario"].ToString()));
+            Session["SunT"] = datos.AsEnumerable().Sum(x => x.SubTotal);
+            
+                return Json("OK", JsonRequestBehavior.AllowGet);
+           
         }
 
 
-
-
         [HttpGet]
-        public ActionResult ActualizarFactura(long q)
+        public ActionResult ConsultarFact()
         {
-            var datos = claseFactura.ConsultaFacturas(q);
+            var datos = claseFactura.ConsultarFact(long.Parse(Session["IdUsuario"].ToString()));
+            Session["TotalPago"] = datos.AsEnumerable().Sum(x => x.Total);
             return View(datos);
         }
 
-        [HttpPost]
-        public ActionResult ActualizarFactura(FacturaEnt entidad)
+        [HttpGet]
+        public ActionResult ConsultaFacturas()
         {
-            string respuesta = claseFactura.ActualizarFacturas(entidad);
-
-            if (respuesta == "OK")
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                ViewBag.MensajeUsuario = "No se ha podido actualizar la Factura";
-                return View();
-            }
+            var datos = claseFactura.ConsultaFacturas(long.Parse(Session["IdUsuario"].ToString()));
+            return View(datos);
         }
+        [HttpGet]
+        public ActionResult ConsultaDetalleFactura(long q)
+        {
+            var datos = claseFactura.ConsultaDetalleFactura(q);
+            return View(datos);
+        }
+        [HttpGet]
+        public ActionResult EliminarRegistroFactura(long q)
+        {
+            claseFactura.EliminarRegistroFactura(q);
 
+            var datos = claseFactura.ConsultarFact(long.Parse(Session["IdUsuario"].ToString()));
+           
+            Session["SubT"] = datos.AsEnumerable().Sum(x => x.SubTotal);
+            return RedirectToAction("ConsultarFact", "Factura");
+        }
 
     }
 }

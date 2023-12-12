@@ -10,13 +10,18 @@
 namespace APIProyecto
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Detalle
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public long IdDetalle { get; set; }
+        public long IdMaestro { get; set; }
+        public long IdSuscripcion { get; set; }
+        public decimal PrecioPagado { get; set; }
+        public int CantidadPagado { get; set; }
+        public decimal ImpuestoPagado { get; set; }
+    
+        public virtual Maestro Maestro { get; set; }
+        public virtual Suscripcion Suscripcion { get; set; }
     }
 }

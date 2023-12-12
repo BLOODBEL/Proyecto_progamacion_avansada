@@ -19,7 +19,7 @@ namespace APIProyecto.Controllers
                 using (var context = new ProyectoPAEntities())
                 {
 
-                    context.RegistrarCuenta(entidad.Identificacion, entidad.Nombre, entidad.Apellidos1, entidad.Apellidos2, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Telefono);
+                    context.RegistrarCuenta(entidad.Identificacion, entidad.Nombre, entidad.CorreoElectronico, entidad.Contrasenna, entidad.Telefono);
                     return "OK";
                 }
             }

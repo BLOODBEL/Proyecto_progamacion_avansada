@@ -1,0 +1,62 @@
+﻿@model WebProyecto.Entities.SuscripcionEnt
+
+@{
+    ViewBag.Title = "RegistrarSuscripcion";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
+}
+<section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -100px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg');">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Registrar Suscripciones</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section d-flex align-items-center justify-content-center">
+</section>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            
+
+            @if (ViewBag.MensajeUsuario != null)
+            {
+                <div class="alert alert-danger" role="alert" style="text-align:center">
+                    @ViewBag.MensajeUsuario
+                </div>
+            }
+
+            @using (Html.BeginForm("RegistrarSuscripcion", "Suscripcion", FormMethod.Post, new { @class = "pt-3", @enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label>descripcion</label>
+                    @Html.TextBoxFor(m => m.descripcion, new
+                    {
+                        @class = "form-control form-control-lg",
+                        @placeholder = "descripcion",
+                       @type = "text"
+                   })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.FechaInicio, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha Inicio", @type = "date" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.FechaFin, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control form-control-lg", @placeholder = "Fecha Fin", @type = "date" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "text" })
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mr-2">Procesar</button>
+            }
+        </div>
+    </div>
+</div>

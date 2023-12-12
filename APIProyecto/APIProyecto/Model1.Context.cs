@@ -29,14 +29,15 @@ namespace APIProyecto
     
         public virtual DbSet<Clase> Clase { get; set; }
         public virtual DbSet<ClaseEntrenador> ClaseEntrenador { get; set; }
+        public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Estadisticas> Estadisticas { get; set; }
         public virtual DbSet<Factura> Factura { get; set; }
         public virtual DbSet<InscritoEn> InscritoEn { get; set; }
+        public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Salario> Salario { get; set; }
         public virtual DbSet<Suscripcion> Suscripcion { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     
         public virtual int ActualizarClase(string nombre, string descripcion, Nullable<long> idClase)
@@ -56,7 +57,7 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarClase", nombreParameter, descripcionParameter, idClaseParameter);
         }
     
-        public virtual int ActualizarCuenta(string identificacion, string nombre, string apellidos1, string apellidos2, string correoElectronico, string telefono, Nullable<long> idUsuario)
+        public virtual int ActualizarCuenta(string identificacion, string nombre, string correoElectronico, string telefono, Nullable<long> idUsuario)
         {
             var identificacionParameter = identificacion != null ?
                 new ObjectParameter("Identificacion", identificacion) :
@@ -65,14 +66,6 @@ namespace APIProyecto
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
                 new ObjectParameter("Nombre", typeof(string));
-    
-            var apellidos1Parameter = apellidos1 != null ?
-                new ObjectParameter("Apellidos1", apellidos1) :
-                new ObjectParameter("Apellidos1", typeof(string));
-    
-            var apellidos2Parameter = apellidos2 != null ?
-                new ObjectParameter("Apellidos2", apellidos2) :
-                new ObjectParameter("Apellidos2", typeof(string));
     
             var correoElectronicoParameter = correoElectronico != null ?
                 new ObjectParameter("CorreoElectronico", correoElectronico) :
@@ -86,10 +79,10 @@ namespace APIProyecto
                 new ObjectParameter("IdUsuario", idUsuario) :
                 new ObjectParameter("IdUsuario", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCuenta", identificacionParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, telefonoParameter, idUsuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCuenta", identificacionParameter, nombreParameter, correoElectronicoParameter, telefonoParameter, idUsuarioParameter);
         }
     
-        public virtual int ActualizarDireccion(string calle, string codPostal, string otraSena, Nullable<long> idUsuario, Nullable<long> idDireccion)
+        public virtual int ActualizarDireccion(string calle, string codPostal, string otraSena, Nullable<long> idDireccion)
         {
             var calleParameter = calle != null ?
                 new ObjectParameter("Calle", calle) :
@@ -103,18 +96,14 @@ namespace APIProyecto
                 new ObjectParameter("OtraSena", otraSena) :
                 new ObjectParameter("OtraSena", typeof(string));
     
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(long));
-    
             var idDireccionParameter = idDireccion.HasValue ?
                 new ObjectParameter("IdDireccion", idDireccion) :
                 new ObjectParameter("IdDireccion", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarDireccion", calleParameter, codPostalParameter, otraSenaParameter, idUsuarioParameter, idDireccionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarDireccion", calleParameter, codPostalParameter, otraSenaParameter, idDireccionParameter);
         }
     
-        public virtual int ActualizarEstadistica(Nullable<decimal> altura, Nullable<decimal> peso, Nullable<System.DateTime> fecha, Nullable<long> idUsuario, Nullable<long> idEstadisticas)
+        public virtual int ActualizarEstadistica(Nullable<decimal> altura, Nullable<decimal> peso, Nullable<System.DateTime> fecha, Nullable<long> idEstadisticas)
         {
             var alturaParameter = altura.HasValue ?
                 new ObjectParameter("Altura", altura) :
@@ -128,15 +117,11 @@ namespace APIProyecto
                 new ObjectParameter("Fecha", fecha) :
                 new ObjectParameter("Fecha", typeof(System.DateTime));
     
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(long));
-    
             var idEstadisticasParameter = idEstadisticas.HasValue ?
                 new ObjectParameter("IdEstadisticas", idEstadisticas) :
                 new ObjectParameter("IdEstadisticas", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEstadistica", alturaParameter, pesoParameter, fechaParameter, idUsuarioParameter, idEstadisticasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEstadistica", alturaParameter, pesoParameter, fechaParameter, idEstadisticasParameter);
         }
     
         public virtual int ActualizarEstadoUsuario(Nullable<long> idUsuario)
@@ -161,21 +146,21 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarRol", descripcionParameter, idRolParameter);
         }
     
-        public virtual int ActualizarSalario(Nullable<long> idSalario, Nullable<decimal> nuevoSalario, string nuevaDescripcion)
+        public virtual int ActualizarSalario(Nullable<long> idSalario, Nullable<decimal> salario, string descripcion)
         {
             var idSalarioParameter = idSalario.HasValue ?
                 new ObjectParameter("idSalario", idSalario) :
                 new ObjectParameter("idSalario", typeof(long));
     
-            var nuevoSalarioParameter = nuevoSalario.HasValue ?
-                new ObjectParameter("nuevoSalario", nuevoSalario) :
-                new ObjectParameter("nuevoSalario", typeof(decimal));
+            var salarioParameter = salario.HasValue ?
+                new ObjectParameter("Salario", salario) :
+                new ObjectParameter("Salario", typeof(decimal));
     
-            var nuevaDescripcionParameter = nuevaDescripcion != null ?
-                new ObjectParameter("nuevaDescripcion", nuevaDescripcion) :
-                new ObjectParameter("nuevaDescripcion", typeof(string));
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarSalario", idSalarioParameter, nuevoSalarioParameter, nuevaDescripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarSalario", idSalarioParameter, salarioParameter, descripcionParameter);
         }
     
         public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
@@ -204,7 +189,7 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarClase", nombreParameter, descripcionParameter);
         }
     
-        public virtual int RegistrarCuenta(string identificacion, string nombre, string apellidos1, string apellidos2, string correoElectronico, string contrasenna, string telefono)
+        public virtual int RegistrarCuenta(string identificacion, string nombre, string correoElectronico, string contrasenna, string telefono)
         {
             var identificacionParameter = identificacion != null ?
                 new ObjectParameter("Identificacion", identificacion) :
@@ -213,14 +198,6 @@ namespace APIProyecto
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
                 new ObjectParameter("Nombre", typeof(string));
-    
-            var apellidos1Parameter = apellidos1 != null ?
-                new ObjectParameter("Apellidos1", apellidos1) :
-                new ObjectParameter("Apellidos1", typeof(string));
-    
-            var apellidos2Parameter = apellidos2 != null ?
-                new ObjectParameter("Apellidos2", apellidos2) :
-                new ObjectParameter("Apellidos2", typeof(string));
     
             var correoElectronicoParameter = correoElectronico != null ?
                 new ObjectParameter("CorreoElectronico", correoElectronico) :
@@ -234,7 +211,7 @@ namespace APIProyecto
                 new ObjectParameter("Telefono", telefono) :
                 new ObjectParameter("Telefono", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuenta", identificacionParameter, nombreParameter, apellidos1Parameter, apellidos2Parameter, correoElectronicoParameter, contrasennaParameter, telefonoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuenta", identificacionParameter, nombreParameter, correoElectronicoParameter, contrasennaParameter, telefonoParameter);
         }
     
         public virtual int RegistrarDireccion(string calle, string codPostal, string otraSena, Nullable<long> idUsuario)
@@ -288,170 +265,21 @@ namespace APIProyecto
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarRol", descripcionParameter);
         }
     
-        public virtual int RegistrarSalario(Nullable<long> idSalario, Nullable<decimal> salario, string descripcion)
+        public virtual int RegistrarSalario(string descripcion, Nullable<decimal> salario, Nullable<long> idUsuario)
         {
-            var idSalarioParameter = idSalario.HasValue ?
-                new ObjectParameter("idSalario", idSalario) :
-                new ObjectParameter("idSalario", typeof(long));
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
     
             var salarioParameter = salario.HasValue ?
                 new ObjectParameter("Salario", salario) :
                 new ObjectParameter("Salario", typeof(decimal));
     
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSalario", idSalarioParameter, salarioParameter, descripcionParameter);
-        }
-    
-        public virtual int RegistrarSuscripcion(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<decimal> precio, Nullable<long> idUsuario)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("FechaInicio", fechaInicio) :
-                new ObjectParameter("FechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("FechaFin", fechaFin) :
-                new ObjectParameter("FechaFin", typeof(System.DateTime));
-    
-            var precioParameter = precio.HasValue ?
-                new ObjectParameter("Precio", precio) :
-                new ObjectParameter("Precio", typeof(decimal));
-    
             var idUsuarioParameter = idUsuario.HasValue ?
                 new ObjectParameter("IdUsuario", idUsuario) :
                 new ObjectParameter("IdUsuario", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSuscripcion", fechaInicioParameter, fechaFinParameter, precioParameter, idUsuarioParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual int ActualizarSuscripcion(Nullable<long> idSuscripcion, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<decimal> precio, Nullable<long> idUsuario)
-        {
-            var idSuscripcionParameter = idSuscripcion.HasValue ?
-                new ObjectParameter("IdSuscripcion", idSuscripcion) :
-                new ObjectParameter("IdSuscripcion", typeof(long));
-    
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("FechaInicio", fechaInicio) :
-                new ObjectParameter("FechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("FechaFin", fechaFin) :
-                new ObjectParameter("FechaFin", typeof(System.DateTime));
-    
-            var precioParameter = precio.HasValue ?
-                new ObjectParameter("Precio", precio) :
-                new ObjectParameter("Precio", typeof(decimal));
-    
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarSuscripcion", idSuscripcionParameter, fechaInicioParameter, fechaFinParameter, precioParameter, idUsuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarSalario", descripcionParameter, salarioParameter, idUsuarioParameter);
         }
     }
 }

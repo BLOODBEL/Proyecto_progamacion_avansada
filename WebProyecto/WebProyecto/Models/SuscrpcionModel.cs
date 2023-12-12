@@ -53,11 +53,11 @@ namespace WebProyecto.Models
 
 
 
-            public string ActualizarSuscripciones(SuscripcionEnt entidad)
+            public string ActualisarSuscripcion(SuscripcionEnt entidad)
         {
             using (var client = new HttpClient())
             {
-                var urlApi = rutaServidor + "ActualizarSuscripciones";
+                var urlApi = rutaServidor + "ActualisarSuscripcion";
                 var jsonData = JsonContent.Create(entidad);
                 var res = client.PutAsync(urlApi, jsonData).Result;
                 return res.Content.ReadFromJsonAsync<string>().Result;

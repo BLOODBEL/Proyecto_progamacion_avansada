@@ -175,13 +175,15 @@
     <Compile Include="Controllers\SalarioController.cs" />
     <Compile Include="Controllers\SuscripcionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Detalle.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Direccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ClaseEnt.cs" />
     <Compile Include="Entities\DireccionEnt.cs" />
     <Compile Include="Entities\FacturaEnt.cs" />
-    <Compile Include="Entities\SuscripcionEnt.cs" />
     <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\SalarioEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
@@ -198,6 +200,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="InscritoEn.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maestro.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
@@ -222,16 +227,7 @@
     <Compile Include="Salario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Suscripcion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">

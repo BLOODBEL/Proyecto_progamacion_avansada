@@ -18,27 +18,16 @@ namespace APIProyecto
         public Clase()
         {
             this.ClaseEntrenador = new HashSet<ClaseEntrenador>();
-            this.ClaseEntrenador1 = new HashSet<ClaseEntrenador>();
-            this.ClaseEntrenador2 = new HashSet<ClaseEntrenador>();
             this.InscritoEn = new HashSet<InscritoEn>();
-            this.InscritoEn1 = new HashSet<InscritoEn>();
         }
     
         public long IdClase { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public long IdUsuario { get; set; }
     
-        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClaseEntrenador> ClaseEntrenador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClaseEntrenador> ClaseEntrenador1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClaseEntrenador> ClaseEntrenador2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InscritoEn> InscritoEn { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InscritoEn> InscritoEn1 { get; set; }
     }
 }

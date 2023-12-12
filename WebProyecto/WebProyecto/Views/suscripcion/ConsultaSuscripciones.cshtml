@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebProyecto.Entities.SuscripcionEnt>
+
+
+@{
+    ViewBag.Title = "ConsultaSuscripcion";
+    Layout = "~/Views/Shared/_Layout_adm.cshtml";
+}
+
+
+<section class="home-slider-loop-false  inner-page owl-carousel" style="margin-bottom: -50px;">
+    <div class="slider-item" style="background-image: url('../../template/img/slider-1.jpg'); background-size: cover; background-position: center center;">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1> Información de Facturas</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Información de Suscripcion</h4>
+
+                    <div style="text-align:right">
+                        <a class="btn btn-primary" href="@Url.Action("RegistrarSuscripcion","Suscripcion")">Agregar</a>
+                    </div>
+                    <br>
+
+                  
+
+                        <table id="tableShow" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th>Descripción</th>
+                                    <th>"Fecha Inicio</th>
+                                    <th>"Fecha Fin</th>
+                                    <th>Precio</th>
+                                    <th>Actualizar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.descripcion</td>
+                                        <td>@item.FechaInicio</td>
+                                        <td>@item.FechaFin</td>
+                                        <td>@item.Precio</td>
+                                        
+                                       
+
+                                        <td style="text-align:center">
+                                            <a href="@Url.Action("ActualizarProducto", "Producto", new { q = item.IdSuscripcion })"><i class="fa fa-tag fa-lg"></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                
+
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script>
+    $(document).ready(function () {
+        $('#tableShow').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+    });
+        </script>

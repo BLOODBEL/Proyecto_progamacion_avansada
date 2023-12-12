@@ -14,77 +14,57 @@ namespace APIProyecto.Controllers
 
         [HttpPost]
         [Route("RegistrarSuscripcion")]
-        public string RegistrarSuscripcion(SuscripcionEnt entidad)
+        public long RegistrarSuscripcion(Suscripcion suscripcion)
         {
-            try
+            using (var context = new ProyectoPAEntities())
             {
-                using (var context = new ProyectoPAEntities())
-                {
-
-                    context.RegistrarSuscripcion(entidad.Precio, entidad.FechaFin, entidad.FechaInicio, entidad.IdSuscripcion, entidad.IdUsuario);
-                    return "OK";
-                }
-            }
-            catch (Exception)
-            {
-                return string.Empty;
+                context.Suscripcion.Add(suscripcion);
+                context.SaveChanges();
+                return suscripcion.IdSuscripcion;
             }
         }
+
 
         [HttpGet]
         [Route("ConsultaSuscripciones")]
-        public List<SuscripcionEnt> ConsultaSuscripciones()
+        public List<Suscripcion> ConsultaSuscripciones()
         {
-            try
+            using (var context = new ProyectoPAEntities())
             {
-                using (var context = new ProyectoPAEntities())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    return (from x in context.Suscripcion
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                return new List<SuscripcionEnt>();
+                context.Configuration.LazyLoadingEnabled = false;
+                return context.Suscripcion.ToList();
             }
         }
-    
+
         [HttpGet]
         [Route("ConsultaSuscripcion")]
-        public Rol ConsultaSuscripcion(long q)
+        public Suscripcion ConsultaSuscripcion(long q)
         {
-            try
+            using (var context = new ProyectoPAEntities())
             {
-                using (var context = new ProyectoPAEntities())
-                {
-                    context.Configuration.LazyLoadingEnabled = false;
-                    return (from x in context.Suscripcion
-                            where x.IdSuscripcion == q
-                            select x).FirstOrDefault();
-                }
-            }
-            catch (Exception)
-            {
-                return null;
+                context.Configuration.LazyLoadingEnabled = false;
+                return (from x in context.Suscripcion
+                        where x.IdSuscripcion == q
+                        select x).FirstOrDefault();
             }
         }
+
+      
         [HttpPut]
         [Route("ActualisarSuscripcion")]
-        public string ActualisarSuscripcion(SuscripcionEnt entidad)
+        public string ActualisarSuscripcion(Suscripcion suscripcion)
         {
-            try
+            using (var context = new ProyectoPAEntities())
             {
-                using (var context = new ProyectoPAEntities())
-                {
-                    context.ActualizarSuscripcion(entidad.IdSuscripcion, entidad.Precio, entidad.FechaInicio, entidad.FechaFin, entidad.IdUsuario);
-                    return "OK";
-                }
-            }
-            catch (Exception)
-            {
-                return string.Empty;
+                var datos = context.Suscripcion.Where(x => x.IdSuscripcion == suscripcion.IdSuscripcion).FirstOrDefault();
+                datos.descripcion = suscripcion.descripcion ;
+                datos.FechaInicio = suscripcion.FechaInicio;
+                datos.FechaFin = suscripcion.FechaFin;
+                datos.Precio = suscripcion.Precio;
+                context.SaveChanges();
+                return "OK";
             }
         }
+      
     }
 }

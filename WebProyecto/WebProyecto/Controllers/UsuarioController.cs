@@ -12,6 +12,8 @@ namespace WebProyecto.Controllers
     {
         UsuarioModel claseUsuario = new UsuarioModel();
 
+
+
         [HttpGet]
         public ActionResult ConsultaUsuarios()
         {

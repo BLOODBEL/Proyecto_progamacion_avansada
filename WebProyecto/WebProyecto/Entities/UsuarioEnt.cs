@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebProyecto.Entities
 {
@@ -14,6 +15,8 @@ namespace WebProyecto.Entities
         public string Telefono { get; set; }
         public bool Estado { get; set; }
         public string DescripcionRol { get; set; }
+
+
 
         /* ENT ESTADISTICAS */
 
